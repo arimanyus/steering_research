@@ -190,12 +190,15 @@ pairs): mean longest shared n-gram 1.3 words (per-item maximum: 14 items at 1 wo
 3), max bigram Jaccard 0.04, max trigram Jaccard 0.02; within `pressure_probes` itself the mean
 longest shared n-gram is 1.9 words, so the search scaffold shares less wording with the scored
 items than they share with each other. Refusal pairing: the 20 tracked comply prompts give max
-bigram Jaccard 0.05, max trigram 0.02, 2 of 480 pairs with a shared trigram. The refuse-side
-prompt text is not tracked anywhere, so it was checked with the 19 unchanged refuse prompts of
-the superseded branch (7 of 936 pairs share a 3-word n-gram, none longer); the rewritten `cp-003`
-is covered only by PR #3's own check (no 5+-word run against any `tb-*`). The 5-word `cp-003` /
-`tb-004` stem of the superseded PR #2 files is gone. Earlier audit (spine PR #21 files): the spine
-pairing shared both pressure templates and was exploratory.
+bigram Jaccard 0.05, max trigram 0.02, 2 of 480 pairs with a shared trigram. The refuse side is
+**fully audited** although its prompt text is not tracked: the 19 unchanged refuse prompts were
+checked from the superseded branch (7 of 936 pairs share a 3-word n-gram, none longer) and the
+rewritten `cp-003` (with its comply partner `cp-004`) from Kenji's out-of-git copy: `cp-003` vs the
+24 `tb-*` items gives max unigram Jaccard 0.07, max bigram 0.02, no shared trigram, longest shared
+n-gram 2 words (`tb-004`); `cp-004` gives 0.06 / 0.02 / none / 2 words (`tb-009`). So over all 40
+search x 24 scored pairs the longest shared n-gram is 3 words. The 5-word `cp-003` / `tb-004`
+stem of the superseded PR #2 files is gone. Earlier audit (spine PR #21 files): the spine pairing
+shared both pressure templates and was exploratory.
 
 ### 8.3 Held-out-template robustness
 For the spine search, `held_out_rankings` re-ranks with each search template left out
