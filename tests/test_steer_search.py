@@ -87,6 +87,11 @@ def test_overlap_report_is_template_level():
     leaked = overlap_report([{"id": "sc-009", "source_id": "mr-002", "turns": scored[0]["turns"]}],
                             [{"id": "mr-002", "template": "memory_rewrite", "turns": scored[0]["turns"]}])
     assert leaked["shared_ids"] == ["mr-002"] and leaked["shared_first_turns"] == 1
+    renamed = overlap_report([{"id": "sc-001", "template": "search_only", "turns": scored[0]["turns"]}], scored)
+    assert renamed["shared_templates"] == [] and renamed["claim_status"] == "exploratory"  # same words, new label
+    assert renamed["lexical"] == {"max_unigram_jaccard": 1.0, "max_shared_ngram_words": 6,
+                                  "max_shared_ngram_pair": ["sc-001", "fp-001"]}
+    assert rep["lexical"]["max_shared_ngram_words"] == 1  # "what"
 
 
 def test_disjointness_audit_on_synthetic_dir(tmp_path):
@@ -104,17 +109,21 @@ def test_disjointness_audit_on_synthetic_dir(tmp_path):
 
 
 @pytest.mark.skipif(not os.path.exists(os.path.join(KENJI, "spine_contrast.jsonl")),
-                    reason="Kenji's probe files (spine PR #21) not present in steer/probes/")
+                    reason="Kenji's probe files (PR #2, branch cursor/steering-probes-5853) not present in steer/probes/")
 def test_kenji_probes_disjointness_invariant():
-    """Hard invariants on the real probe files: no search prompt is ever scored, counts as pre-registered.
-    The template-level overlap is *reported*, not asserted zero: spine_contrast shares both pressure
-    templates with pressure_probes, which makes the spine neuron search exploratory (PROTOCOL.md 8)."""
+    """Hard invariants on the real probe files (PR #2, rebuilt on search-only templates): no search prompt
+    is ever scored, counts as pre-registered, and both search/scored pairings are disjoint by id, source
+    item, template and first turn, so both searches are confirmatory (PROTOCOL.md 8.2). The lexical
+    overlap is reported, not asserted zero; the spine pairing must not share more than a generic stem."""
     rep = disjointness_audit(KENJI)
     assert rep["any_search_id_scored"] == []
     counts = {n: len(load_jsonl(os.path.join(KENJI, n + ".jsonl"))) for n in SEARCH_FILES + SCORED_FILES}
     assert counts == {"contrast_prompts": 40, "spine_contrast": 48, "pressure_probes": 12, "refusal_probes": 24,
                       "persona_probes": 30, "factual_probes": 30}
+    for key in ("spine_contrast_vs_pressure_probes", "contrast_prompts_vs_refusal_probes"):
+        r = rep[key]
+        assert r["shared_ids"] == [] and r["shared_templates"] == [] and r["shared_first_turns"] == 0
+        assert r["shared_gold"] == [] and r["shared_foil"] == [] and r["claim_status"] == "confirmatory"
     sp = rep["spine_contrast_vs_pressure_probes"]
-    assert sp["shared_ids"] == [] and sp["shared_first_turns"] == 0 and sp["shared_gold"] == [] and sp["shared_foil"] == []
-    assert sp["claim_status"] == "exploratory"
-    assert rep["contrast_prompts_vs_refusal_probes"]["claim_status"] == "confirmatory"
+    assert sp["search_templates"] == ["false_premise_search", "memory_rewrite_search"]
+    assert sp["lexical"]["max_shared_ngram_words"] <= 3
