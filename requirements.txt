@@ -1,0 +1,6 @@
+numpy>=1.26
+pytest>=8
+# Optional, only for `python -m steer.scorer --nli` (downloads weights); install torch from the CPU
+# index first to avoid CUDA wheels: pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.4"
+# torch>=2.4
+# transformers>=4.45,<5
