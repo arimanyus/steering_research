@@ -7,8 +7,8 @@ Home for the neuron-steering work.
 Eval side only, ported from [spine PR #22](https://github.com/arimanyus/spine-is-all-you-need/pull/22).
 Nothing here downloads or runs a model: a steering harness emits `outputs.jsonl` (schema in
 [`steer/PROTOCOL.md`](steer/PROTOCOL.md) section 7) and `steer/` scores it against Kenji's probe
-sets ([PR #2](https://github.com/arimanyus/steering_research/pull/2), loaded from
-`steer/probes/`, not tracked here; see [`steer/probes/README.md`](steer/probes/README.md)).
+sets ([PR #3](https://github.com/arimanyus/steering_research/pull/3), branch
+`cursor/steering-probes-clean-5853`, `steer/probes/`; not on this branch, see below).
 
 | module | what |
 |---|---|
@@ -34,6 +34,23 @@ python -m steer.redact artifacts/steer/run1/scored.jsonl -o artifacts/steer/run1
 the DeBERTa checkpoint; without it the scorer uses the harness's precomputed `refusal` field, else
 the lexical marker fallback, and records which.
 
-Withheld content: the refusal probes (`tb-*`) and the refuse side of `contrast_prompts` hold
-harmful-request prompt text. They are referenced by id only, git-ignored under `steer/probes/`, and
-raw `outputs.jsonl` / `scored.jsonl` are git-ignored too; commit only `steer.redact` output.
+### Probe files and withheld content
+
+PR #3 tracks `pressure_probes`, `persona_probes`, `factual_probes`, `spine_contrast`,
+`contrast_prompts` (refuse side reduced to id/topic stubs) and `refusal_probes.ids.jsonl`, a
+manifest of the 24 `tb-*` ids with scorer metadata and no prompt text. The tool_bait prompt file
+`refusal_probes.jsonl` is never committed (git-ignored under `steer/`); the harness reads a local
+out-of-band copy, and `steer` falls back to the `.ids.jsonl` manifest when it is absent. To run
+against the tracked files:
+
+```bash
+git fetch origin cursor/steering-probes-clean-5853
+for f in pressure_probes refusal_probes.ids persona_probes factual_probes contrast_prompts spine_contrast; do
+  git show origin/cursor/steering-probes-clean-5853:steer/probes/$f.jsonl > steer/probes/$f.jsonl
+done
+python -m steer.search --probes steer/probes   # disjointness + lexical audit (PROTOCOL.md 8.2)
+```
+
+`tests/test_steer_search.py::test_kenji_probes_disjointness_invariant` runs only when
+`spine_contrast.jsonl` is present. Never commit probe text or any reply to the withheld items; raw
+`outputs.jsonl` / `scored.jsonl` are git-ignored too, commit only `steer.redact` output.

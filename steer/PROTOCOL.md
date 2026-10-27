@@ -1,8 +1,8 @@
 # Pre-registered protocol: does two-neuron steering *break* Qwen3.5-4B?
 
 Status: pre-registration, frozen before any steered output is scored. Eval side only; the steering
-harness (Maya) and the probe sets (Kenji, [PR #2](https://github.com/arimanyus/steering_research/pull/2),
-loaded from `steer/probes/`, see `steer/probes/README.md`) live elsewhere. Nothing in `steer/`
+harness (Maya) and the probe sets (Kenji, [PR #3](https://github.com/arimanyus/steering_research/pull/3),
+loaded from `steer/probes/`; fetch instructions in the top-level README) live elsewhere. Nothing in `steer/`
 downloads or runs a model. Ported from [spine PR #22](https://github.com/arimanyus/spine-is-all-you-need/pull/22);
 the text scorers it relied on are vendored in `steer/spine.py`.
 
@@ -133,11 +133,15 @@ DeBERTa refusal classifier (downloads weights); without it the scorer uses the h
 field, else the lexical marker fallback, and records which (`B1.scorer`).
 
 **Withheld content.** The refusal probes (`tb-001`..`tb-024`) and the `refuse` side of
-`contrast_prompts` are withheld from this repository: they are referenced by id only and the two
-files are git-ignored under `steer/probes/`. Never commit their prompt text or any reply to them:
-raw `outputs.jsonl` / `scored.jsonl` are git-ignored under `steer/`; commit only
-`python -m steer.redact` output, which replaces every refusal-row reply (and any other
-complied-looking reply) with a stub and keeps ids and scores.
+`contrast_prompts` are withheld from version control. The tree tracks only
+`steer/probes/refusal_probes.ids.jsonl` (ids and scorer metadata: markers, gold/foil, `withheld:
+true`; no turns) and id/topic stubs for the refuse rows; `steer/probes/refusal_probes.jsonl` is
+git-ignored and read from a local copy. `load_probe_set` falls back from `<name>.jsonl` to
+`<name>.ids.jsonl`, so the scorer runs from the manifest (lexical fallback uses its generic
+markers; the NLI premise then has no `ask`) and the audit still checks ids and templates. Never
+commit prompt text or any reply to these items: raw `outputs.jsonl` / `scored.jsonl` are
+git-ignored under `steer/`; commit only `python -m steer.redact` output, which replaces every
+refusal-row reply (and any other complied-looking reply) with a stub and keeps ids and scores.
 
 ## 8. Neuron search (layers 13 and 14)
 
@@ -165,27 +169,33 @@ pair), because a template can be renamed but shared wording cannot. A search res
 claim (**confirmatory**) only if ids, templates and first turns are all disjoint; otherwise it is
 **exploratory**. The lexical numbers are reported, not thresholded.
 
-Audit of Kenji's rebuilt files ([PR #2](https://github.com/arimanyus/steering_research/pull/2),
-branch `cursor/steering-probes-5853`; `spine_contrast` rebuilt on the search-only templates
+Audit of Kenji's clean files ([PR #3](https://github.com/arimanyus/steering_research/pull/3),
+branch `cursor/steering-probes-clean-5853`; `spine_contrast` rebuilt on the search-only templates
 `false_premise_search` / `memory_rewrite_search` from 24 source items none of the 12 scored
-pressure items use). `tests/test_steer_search.py::test_kenji_probes_disjointness_invariant`
-re-checks it whenever the files are present:
+pressure items use; `cp-003`/`cp-004` moved from the `phishing` topic to `fake_reviews`). The
+tool_bait text for the audit came from a local copy whose 24 ids and metadata match
+`refusal_probes.ids.jsonl` exactly (same order; the manifest keeps only the generic compliance
+markers, dropping one per-item marker per probe).
+`tests/test_steer_search.py::test_kenji_probes_disjointness_invariant` re-checks the table
+whenever the files are present:
 
 | search vs scored | ids / source items | first turns / gold / foil | templates | max unigram Jaccard | longest shared n-gram | status |
 |---|---|---|---|---|---|---|
 | `spine_contrast` (48) vs `pressure_probes` (12) | 0 / 0 | 0 / 0 / 0 | 0 (`*_search` vs `false_premise_stack`, `memory_rewrite`) | 0.19 | 3 words (generic question stem, `sc-001` vs `fp-001`) | **confirmatory** |
-| `contrast_prompts` (40) vs `refusal_probes` (24) | 0 / n.a. | 0 / 0 / 0 | 0 (`single_turn_*` vs `tool_bait`) | 0.17 | 5 words (`cp-003` vs `tb-004`, shared request stem on the matched topic `phishing`) | **confirmatory** |
+| `contrast_prompts` (40) vs `refusal_probes` (24) | 0 / n.a. | 0 / 0 / 0 | 0 (`single_turn_*` vs `tool_bait`) | 0.17 | 3 words (`cp-018` vs `tb-009`) | **confirmatory** |
 
-Both searches are confirmatory at the id, source-item, template and first-turn level. Lexical
-detail, spine pairing: over the 288 pressured x scored pairs the mean longest shared n-gram is
-1.3 words (per-item maximum: 14 items at 1 word, 4 at 2, 6 at 3), max bigram Jaccard 0.04, max
-trigram Jaccard 0.02; within `pressure_probes` itself the mean longest shared n-gram is 1.9
-words, so the search scaffold shares less wording with the scored items than they share with each
-other. Refusal pairing: 9 of 960 pairs share a 3+-word n-gram; the single 5-word stem (`cp-003`,
-`tb-004`) is topic overlap (one of the 20 matched topics coincides with a scored `tool_bait`
-topic), not template overlap. It is noted here as a caveat on the safety search; swapping
-`cp-003`'s topic would remove it. Previous audit (spine PR #21 files): the spine pairing shared
-both pressure templates and was exploratory.
+Both searches are confirmatory at the id, source-item, template and first-turn level, and no
+pairing shares more than a 3-word stem. Lexical detail, spine pairing (288 pressured x scored
+pairs): mean longest shared n-gram 1.3 words (per-item maximum: 14 items at 1 word, 4 at 2, 6 at
+3), max bigram Jaccard 0.04, max trigram Jaccard 0.02; within `pressure_probes` itself the mean
+longest shared n-gram is 1.9 words, so the search scaffold shares less wording with the scored
+items than they share with each other. Refusal pairing: the 20 tracked comply prompts give max
+bigram Jaccard 0.05, max trigram 0.02, 2 of 480 pairs with a shared trigram. The refuse-side
+prompt text is not tracked anywhere, so it was checked with the 19 unchanged refuse prompts of
+the superseded branch (7 of 936 pairs share a 3-word n-gram, none longer); the rewritten `cp-003`
+is covered only by PR #3's own check (no 5+-word run against any `tb-*`). The 5-word `cp-003` /
+`tb-004` stem of the superseded PR #2 files is gone. Earlier audit (spine PR #21 files): the spine
+pairing shared both pressure templates and was exploratory.
 
 ### 8.3 Held-out-template robustness
 For the spine search, `held_out_rankings` re-ranks with each search template left out

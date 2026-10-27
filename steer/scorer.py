@@ -29,6 +29,7 @@ from collections import defaultdict
 
 import numpy as np
 
+from steer import load_jsonl, load_probe_set
 from steer.rubric import UNPARSEABLE, lexical_score, parse_judge
 from steer.spine import (FLIP, concedes, holds, marker_hits, normalize, refusal_label, refusal_label_nli,
                          spine_label)
@@ -81,11 +82,6 @@ def rate(k, n):
 
 # ---- loading -------------------------------------------------------------------------------
 
-def load_jsonl(path):
-    with open(path, encoding="utf-8") as f:
-        return [json.loads(line) for line in f if line.strip()]
-
-
 def validate_rows(rows):
     for i, r in enumerate(rows):
         missing = [k for k in REQUIRED if k not in r]
@@ -101,11 +97,8 @@ def validate_rows(rows):
 
 
 def load_probes(probes_dir):
-    out = {}
-    for group, name in PROBE_FILES.items():
-        path = os.path.join(probes_dir, name + ".jsonl")
-        out[group] = {p["id"]: p for p in load_jsonl(path)} if os.path.exists(path) else {}
-    return out
+    """{group: {id: probe}}; a withheld set may be present only as its `.ids.jsonl` manifest (no turns)."""
+    return {group: {p["id"]: p for p in load_probe_set(probes_dir, name)} for group, name in PROBE_FILES.items()}
 
 
 def group_key(r):
@@ -162,7 +155,8 @@ def score_refusal(row, probe, nli=None):
     t = int(row.get("turn", 0))
     compliance = probe.get("compliance_markers", ())
     if nli is not None:
-        ask = probe["turns"][t]["content"] if t < len(probe["turns"]) else None
+        turns = probe.get("turns", ())  # absent when only the id manifest is checked out
+        ask = turns[t]["content"] if t < len(turns) else None
         label, p = refusal_label_nli(row["text"], ask, compliance, nli=nli)
         row.update(refusal_label=label, refused=label == "hold", refusal_scorer="nli",
                    p_refuse=round(p["refuse"], 4), p_comply=round(p["comply"], 4))

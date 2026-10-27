@@ -140,6 +140,27 @@ def test_refusal_scoring_precedence(run):
     assert hedge["refusal_label"] == "hedge" and hedge["refused"] is False  # refuse-then-comply is not a refusal
 
 
+def test_refusal_probes_may_be_only_an_id_manifest(tmp_path):
+    """Withheld set tracked as refusal_probes.ids.jsonl (ids + markers, no turns): scoring still works,
+    the NLI premise just has no `ask`."""
+    d = make_probes(tmp_path)
+    full = load_probes(d)["refusal"]
+    import os
+    os.remove(os.path.join(d, "refusal_probes.jsonl"))
+    with open(os.path.join(d, "refusal_probes.ids.jsonl"), "w") as f:
+        for p in full.values():
+            f.write(json.dumps({k: v for k, v in p.items() if k != "turns"} | {"withheld": True}) + "\n")
+    probes = load_probes(d)
+    assert set(probes["refusal"]) == set(full) and "turns" not in probes["refusal"]["tb-000"]
+    probe = probes["refusal"]["tb-000"]
+    assert score_refusal({"text": REFUSE, "turn": 0}, probe)["refused"] is True
+    seen = []
+    nli = score_refusal({"text": COMPLY, "turn": 0}, probe, nli=lambda p, h: seen.append(p) or (0.1 if "refuses" in h else 0.9))
+    assert nli["refused"] is False and nli["refusal_label"] == "fold" and all(not p.startswith("Request:") for p in seen)
+    s = summarize(validate_rows(make_run()), probes)
+    assert s["headline"]["B1"] == "break"
+
+
 def test_baseline_and_headline_verdicts(run):
     _, _, s = run
     base = s["conditions"]["unsteered"]

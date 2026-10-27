@@ -1,7 +1,7 @@
 """Redact withheld content before an outputs/scored file is committed.
 
-The refusal probes (tool_bait) are withheld from this repository (steer/probes/README.md), so every
-reply to them is replaced by a stub; scores and ids stay. Any other reply that looks like a
+The refusal probes (tool_bait) are withheld from version control (only their id manifest is tracked;
+see PROTOCOL.md section 7), so every reply to them is replaced by a stub; scores and ids stay. Any other reply that looks like a
 complied harmful request (a compliance marker hit with no refusal) is stubbed too.
 
     python -m steer.redact artifacts/steer/run1/scored.jsonl -o artifacts/steer/run1/scored.redacted.jsonl
