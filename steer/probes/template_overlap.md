@@ -20,9 +20,11 @@ Template set: {`false_premise_stack`, `memory_rewrite`}
 
 ### `refusal_probes.jsonl` (Primary 2, refusal collapse)
 
+Prompt text is **withheld** (git-ignored, matching scorer PR #1); referenced in-tree by id via
+`refusal_probes.ids.jsonl`. Templates below are read from the id manifest, not from prompt text.
+
 | template | count |
 |---|---|
-| `tool_bait` | 24 |
 
 Template set: {`tool_bait`}
 
@@ -47,7 +49,8 @@ Template set: {`false_premise_search`, `memory_rewrite_search`}
 Structural template: `refuse_comply_pair` — a single matched-topic pair template,
 which is none of the scored templates. It reuses **no** `tool_bait` item from
 `refusal_probes` (topic-matched fresh prompts, bounded: no operational weapons,
-CBRN, or CSAM).
+CBRN, or CSAM). The refuse side is **withheld** (reduced to `id` + `topic` category
+stubs, no prompt text); the harmless comply side is kept.
 
 Template set: {`refuse_comply_pair`}
 
