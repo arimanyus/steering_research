@@ -23,6 +23,7 @@ import re
 
 import numpy as np
 
+from steer import load_jsonl, load_probe_set
 from steer.controls import POSTED, _as_array
 
 LAYERS = (13, 14)
@@ -30,11 +31,6 @@ KS = (1, 2, 4, 8)
 SEARCH_FILES = ("contrast_prompts", "spine_contrast")
 SCORED_FILES = ("pressure_probes", "refusal_probes", "persona_probes", "factual_probes")
 _PREFIX_TEMPLATE = {"fp": "false_premise_stack", "mr": "memory_rewrite", "tb": "tool_bait"}
-
-
-def load_jsonl(path):
-    with open(path, encoding="utf-8") as f:
-        return [json.loads(line) for line in f if line.strip()]
 
 
 # ---- ranking -------------------------------------------------------------------------------
@@ -159,18 +155,20 @@ def longest_shared_ngram(a, b):
 def lexical_overlap(search_items, scored_items):
     """Worst-case wording overlap over all (search, scored) pairs, on the normalized user text: max
     unigram Jaccard and the longest shared word n-gram (with the pair that attains it). Templates
-    can be renamed; shared wording cannot, so this is reported next to the template audit."""
-    out = {"max_unigram_jaccard": 0.0, "max_shared_ngram_words": 0, "max_shared_ngram_pair": None}
-    for s in search_items:
-        st = _norm(user_text(s)).split()
-        for p in scored_items:
-            pt = _norm(user_text(p)).split()
-            if not st or not pt:
-                continue
+    can be renamed; shared wording cannot, so this is reported next to the template audit.
+    Withheld items (id stubs / manifest rows, no text) cannot be checked; `items_with_text` says
+    how many on each side were."""
+    search = [(s["id"], _norm(user_text(s)).split()) for s in search_items]
+    scored = [(p["id"], _norm(user_text(p)).split()) for p in scored_items]
+    search, scored = [x for x in search if x[1]], [x for x in scored if x[1]]
+    out = {"items_with_text": [len(search), len(scored)], "max_unigram_jaccard": 0.0,
+           "max_shared_ngram_words": 0, "max_shared_ngram_pair": None}
+    for sid, st in search:
+        for pid, pt in scored:
             out["max_unigram_jaccard"] = max(out["max_unigram_jaccard"], len(set(st) & set(pt)) / len(set(st) | set(pt)))
             n = longest_shared_ngram(st, pt)
             if n > out["max_shared_ngram_words"]:
-                out["max_shared_ngram_words"], out["max_shared_ngram_pair"] = n, [s["id"], p["id"]]
+                out["max_shared_ngram_words"], out["max_shared_ngram_pair"] = n, [sid, pid]
     return out
 
 
@@ -185,7 +183,7 @@ def overlap_report(search_items, scored_items):
     t_scored = {item_template(i) for i in scored_items} - {None}
     shared_ids = sorted(ids(search_items) & ids(scored_items))
     shared_templates = sorted(t_search & t_scored)
-    shared_text = {_norm(first_turn(i)) for i in search_items} & {_norm(first_turn(i)) for i in scored_items}
+    shared_text = {_norm(first_turn(i)) for i in search_items} & {_norm(first_turn(i)) for i in scored_items} - {""}
     gold = {i.get("gold") for i in search_items} & {i.get("gold") for i in scored_items} - {None}
     foil = {i.get("foil") for i in search_items} & {i.get("foil") for i in scored_items} - {None}
     return {"n_search": len(search_items), "n_scored": len(scored_items),
@@ -199,8 +197,9 @@ def overlap_report(search_items, scored_items):
 
 
 def disjointness_audit(probes_dir):
-    """The two search/scored pairings the protocol names, plus a global id check."""
-    p = {name: load_jsonl(f"{probes_dir}/{name}.jsonl") for name in SEARCH_FILES + SCORED_FILES}
+    """The two search/scored pairings the protocol names, plus a global id check. A withheld set may
+    be present only as its `.ids.jsonl` manifest; ids and templates are still audited, wording is not."""
+    p = {name: load_probe_set(probes_dir, name) for name in SEARCH_FILES + SCORED_FILES}
     search_ids = {i["id"] for n in SEARCH_FILES for i in p[n]}
     scored_ids = {i["id"] for n in SCORED_FILES for i in p[n]}
     return {"spine_contrast_vs_pressure_probes": overlap_report(p["spine_contrast"], p["pressure_probes"]),
