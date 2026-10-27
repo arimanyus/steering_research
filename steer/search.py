@@ -136,26 +136,66 @@ def first_turn(item):
     return item.get("prompt", "")
 
 
+def user_text(item):
+    """All user turns of a probe (or its single prompt), joined."""
+    if "turns" in item:
+        return " ".join(t["content"] for t in item["turns"] if t["role"] == "user")
+    return item.get("prompt", "")
+
+
+def longest_shared_ngram(a, b):
+    """Length in words of the longest common contiguous word sequence of token lists `a` and `b`."""
+    best, prev = 0, [0] * (len(b) + 1)
+    for x in a:
+        cur = [0] * (len(b) + 1)
+        for j, y in enumerate(b, 1):
+            if x == y:
+                cur[j] = prev[j - 1] + 1
+                best = max(best, cur[j])
+        prev = cur
+    return best
+
+
+def lexical_overlap(search_items, scored_items):
+    """Worst-case wording overlap over all (search, scored) pairs, on the normalized user text: max
+    unigram Jaccard and the longest shared word n-gram (with the pair that attains it). Templates
+    can be renamed; shared wording cannot, so this is reported next to the template audit."""
+    out = {"max_unigram_jaccard": 0.0, "max_shared_ngram_words": 0, "max_shared_ngram_pair": None}
+    for s in search_items:
+        st = _norm(user_text(s)).split()
+        for p in scored_items:
+            pt = _norm(user_text(p)).split()
+            if not st or not pt:
+                continue
+            out["max_unigram_jaccard"] = max(out["max_unigram_jaccard"], len(set(st) & set(pt)) / len(set(st) | set(pt)))
+            n = longest_shared_ngram(st, pt)
+            if n > out["max_shared_ngram_words"]:
+                out["max_shared_ngram_words"], out["max_shared_ngram_pair"] = n, [s["id"], p["id"]]
+    return out
+
+
 def overlap_report(search_items, scored_items):
-    """Overlap between a search set and a scored set at four levels: ids, source ids, templates, and
-    normalized first-turn text (plus shared gold/foil where present). `claim_status` is
-    "confirmatory" only when the template overlap is empty; any shared template makes neuron-search
-    results on this pair exploratory."""
+    """Overlap between a search set and a scored set at four levels: ids (and source ids), templates,
+    normalized first-turn text (plus shared gold/foil where present), and wording (`lexical`).
+    `claim_status` is "confirmatory" only when ids, templates and first turns are all disjoint;
+    otherwise neuron-search results on this pair are exploratory."""
     def ids(items):
         return {i["id"] for i in items} | {i["source_id"] for i in items if "source_id" in i}
     t_search = {item_template(i) for i in search_items} - {None}
     t_scored = {item_template(i) for i in scored_items} - {None}
+    shared_ids = sorted(ids(search_items) & ids(scored_items))
     shared_templates = sorted(t_search & t_scored)
     shared_text = {_norm(first_turn(i)) for i in search_items} & {_norm(first_turn(i)) for i in scored_items}
     gold = {i.get("gold") for i in search_items} & {i.get("gold") for i in scored_items} - {None}
     foil = {i.get("foil") for i in search_items} & {i.get("foil") for i in scored_items} - {None}
     return {"n_search": len(search_items), "n_scored": len(scored_items),
-            "shared_ids": sorted(ids(search_items) & ids(scored_items)),
+            "shared_ids": shared_ids,
             "search_templates": sorted(t_search), "scored_templates": sorted(t_scored),
             "shared_templates": shared_templates,
             "template_overlap": len(shared_templates) / len(t_scored) if t_scored else 0.0,
             "shared_first_turns": len(shared_text), "shared_gold": sorted(gold), "shared_foil": sorted(foil),
-            "claim_status": "confirmatory" if not shared_templates else "exploratory"}
+            "lexical": lexical_overlap(search_items, scored_items),
+            "claim_status": "confirmatory" if not (shared_ids or shared_templates or shared_text) else "exploratory"}
 
 
 def disjointness_audit(probes_dir):

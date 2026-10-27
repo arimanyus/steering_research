@@ -4,7 +4,7 @@ artifacts/
 outputs.jsonl
 scored.jsonl
 random_pairs.json
-# Withheld probe files from spine PR #21 (tool_bait prompt text; referenced by id only, see
+# Withheld probe files from PR #2 (tool_bait prompt text; referenced by id only, see
 # probes/README.md). Never on a public branch.
 probes/refusal_probes.jsonl
 probes/contrast_prompts.jsonl

@@ -7,7 +7,7 @@ Home for the neuron-steering work.
 Eval side only, ported from [spine PR #22](https://github.com/arimanyus/spine-is-all-you-need/pull/22).
 Nothing here downloads or runs a model: a steering harness emits `outputs.jsonl` (schema in
 [`steer/PROTOCOL.md`](steer/PROTOCOL.md) section 7) and `steer/` scores it against Kenji's probe
-sets ([spine PR #21](https://github.com/arimanyus/spine-is-all-you-need/pull/21), loaded from
+sets ([PR #2](https://github.com/arimanyus/steering_research/pull/2), loaded from
 `steer/probes/`, not tracked here; see [`steer/probes/README.md`](steer/probes/README.md)).
 
 | module | what |

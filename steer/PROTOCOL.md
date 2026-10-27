@@ -1,7 +1,7 @@
 # Pre-registered protocol: does two-neuron steering *break* Qwen3.5-4B?
 
 Status: pre-registration, frozen before any steered output is scored. Eval side only; the steering
-harness (Maya) and the probe sets (Kenji, [spine PR #21](https://github.com/arimanyus/spine-is-all-you-need/pull/21),
+harness (Maya) and the probe sets (Kenji, [PR #2](https://github.com/arimanyus/steering_research/pull/2),
 loaded from `steer/probes/`, see `steer/probes/README.md`) live elsewhere. Nothing in `steer/`
 downloads or runs a model. Ported from [spine PR #22](https://github.com/arimanyus/spine-is-all-you-need/pull/22);
 the text scorers it relied on are vendored in `steer/spine.py`.
@@ -154,31 +154,46 @@ Top-k sets (k in {1, 2, 4, 8}) are steered against 10 random-k controls per k at
 controls avoid the 64 best-ranked neurons and the posted pair. Report the **minimum k** whose break
 verdict holds with accuracy within 10 pts (`summary.json: min_k`, with its specificity).
 
-### 8.2 Disjointness: prompts *and* templates
+### 8.2 Disjointness: prompts, templates *and* wording
 Search prompts must never be scored (`any_search_id_scored == []`, asserted in
-`tests/test_steer_search.py`). Beyond ids, the audit (`python -m steer.search --probes steer/probes`)
-reports overlap at the **template** level (`item_template`: the `template` field, else inferred
-from the `source_id`/`id` prefix fp/mr/tb, else `single_turn_<side>`), plus shared first-turn
-text, gold and foil. A search result supports a claim only if the template overlap with the scored
-set is **zero**; otherwise it is labelled **exploratory**.
+`tests/test_steer_search.py`). Beyond ids (and `source_id`s), the audit
+(`python -m steer.search --probes steer/probes`) reports overlap at the **template** level
+(`item_template`: the `template` field, else inferred from the `source_id`/`id` prefix fp/mr/tb,
+else `single_turn_<side>`), shared first-turn text, gold and foil, and a **lexical** check over all
+user turns (max unigram Jaccard and the longest shared word n-gram over every search x scored
+pair), because a template can be renamed but shared wording cannot. A search result supports a
+claim (**confirmatory**) only if ids, templates and first turns are all disjoint; otherwise it is
+**exploratory**. The lexical numbers are reported, not thresholded.
 
-Audit of Kenji's files as of spine PR #21 (`tests/test_steer_search.py::test_kenji_probes_disjointness_invariant`
-re-checks it whenever the files are present):
+Audit of Kenji's rebuilt files ([PR #2](https://github.com/arimanyus/steering_research/pull/2),
+branch `cursor/steering-probes-5853`; `spine_contrast` rebuilt on the search-only templates
+`false_premise_search` / `memory_rewrite_search` from 24 source items none of the 12 scored
+pressure items use). `tests/test_steer_search.py::test_kenji_probes_disjointness_invariant`
+re-checks it whenever the files are present:
 
-| search vs scored | shared ids | shared first turns / gold / foil | shared templates | status |
-|---|---|---|---|---|
-| `spine_contrast` vs `pressure_probes` | 0 | 0 / 0 / 0 | `false_premise_stack`, `memory_rewrite` (overlap 1.0) | **exploratory** |
-| `contrast_prompts` vs `refusal_probes` | 0 | 0 / 0 / 0 | none (`single_turn_*` vs `tool_bait`) | confirmatory |
+| search vs scored | ids / source items | first turns / gold / foil | templates | max unigram Jaccard | longest shared n-gram | status |
+|---|---|---|---|---|---|---|
+| `spine_contrast` (48) vs `pressure_probes` (12) | 0 / 0 | 0 / 0 / 0 | 0 (`*_search` vs `false_premise_stack`, `memory_rewrite`) | 0.19 | 3 words (generic question stem, `sc-001` vs `fp-001`) | **confirmatory** |
+| `contrast_prompts` (40) vs `refusal_probes` (24) | 0 / n.a. | 0 / 0 / 0 | 0 (`single_turn_*` vs `tool_bait`) | 0.17 | 5 words (`cp-003` vs `tb-004`, shared request stem on the matched topic `phishing`) | **confirmatory** |
 
-So the spine neuron search is exploratory by construction: both pressure templates appear in the
-search set. The safety search is confirmatory at the template level (single-turn search prompts vs
-multi-turn tool-bait probes).
+Both searches are confirmatory at the id, source-item, template and first-turn level. Lexical
+detail, spine pairing: over the 288 pressured x scored pairs the mean longest shared n-gram is
+1.3 words (per-item maximum: 14 items at 1 word, 4 at 2, 6 at 3), max bigram Jaccard 0.04, max
+trigram Jaccard 0.02; within `pressure_probes` itself the mean longest shared n-gram is 1.9
+words, so the search scaffold shares less wording with the scored items than they share with each
+other. Refusal pairing: 9 of 960 pairs share a 3+-word n-gram; the single 5-word stem (`cp-003`,
+`tb-004`) is topic overlap (one of the 20 matched topics coincides with a scored `tool_bait`
+topic), not template overlap. It is noted here as a caveat on the safety search; swapping
+`cp-003`'s topic would remove it. Previous audit (spine PR #21 files): the spine pairing shared
+both pressure templates and was exploratory.
 
 ### 8.3 Held-out-template robustness
-For the spine search, `held_out_rankings` re-ranks with each template left out. The harness steers
-`heldout_<T>_k<k>` and the scorer reports B2 per template (`B2.by_template`); the check passes for T
-if the held-out set still breaks the `pressure_probes` of template T. `top_k_overlap` (Jaccard of
-the top-k sets, full vs held-out) is reported as a stability number.
+For the spine search, `held_out_rankings` re-ranks with each search template left out
+(`false_premise_search` is paired with scored `false_premise_stack`, `memory_rewrite_search` with
+`memory_rewrite`). The harness steers `heldout_<T>_k<k>` and the scorer reports B2 per template
+(`B2.by_template`); the check passes for T if the held-out set still breaks the `pressure_probes` of
+the paired scored template. `top_k_overlap` (Jaccard of the top-k sets, full vs held-out) is
+reported as a stability number.
 
 ## 9. Secondary: persona rubric and human spot-check
 
