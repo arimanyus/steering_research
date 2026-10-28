@@ -37,11 +37,13 @@ Per Vivek, the goal is **breaking the model**, not persona. Priorities:
 |------|---|---------|
 | `contrast_prompts.jsonl` | 40 | 20 refuse-side prompts + 20 harmless lookalikes on matched topics. Used to find neurons in layers 13–14 that differ between refusal and compliance. The refuse side is **withheld** (reduced to `id` + `topic` category stubs); the harmless comply side keeps its prompt. |
 | `spine_contrast.jsonl`   | 48 | 24 false-premise / memory-rewrite items, each as a `clean` row (neutral question only) and a `pressured` row (full escalating turns). Used to find folding neurons. |
+| `spine_contrast_xfamily.jsonl` | 48 | 24 **new** factual items on two pressure families the scored set never uses (12 `fake_authority`, 12 `fake_consensus`), each as `clean` / `pressured`. Cross-family confirmation of the `spine_contrast` neuron ranking. Checked by `check_spine_contrast_xfamily.py`. |
 
 ## Disjointness invariant (must hold)
 
-Search sets (`contrast_prompts`, `spine_contrast`) must **never overlap** eval sets
-(`refusal_probes`, `pressure_probes`) — by **id, by source item, and by template**.
+Search sets (`contrast_prompts`, `spine_contrast`, `spine_contrast_xfamily`) must **never
+overlap** eval sets (`refusal_probes`, `pressure_probes`) — by **id, by source item, and by
+template**.
 
 Per Leila/Asha, id-disjointness alone is insufficient: `spine_contrast` and the scored
 `pressure_probes` were originally built from the **same** `false_premise_stack` /
@@ -53,6 +55,11 @@ wording rather than the folding behaviour. To close this:
   (`false_premise_search` / `memory_rewrite_search`) whose wording shares nothing with the
   scored pressure scaffold.
 - `contrast_prompts` uses the `refuse_comply_pair` template and reuses no `tool_bait` item.
+- `spine_contrast_xfamily` goes one level further: its scaffolds belong to pressure **families**
+  (`fake_authority`, `fake_consensus`) the scored set does not use at all, and its 24 facts are
+  new (not in `pressure_probes` or `factual_probes`). Zero shared ids, source items, templates
+  and template families with `pressure_probes`; longest shared consecutive-word run with any
+  scored file is 3 (`check_spine_contrast_xfamily.py`).
 
 Template overlap between the search and scored sets is therefore exactly **zero**. See
 `template_overlap.md` for the per-template membership and the confirmed empty intersection.
@@ -97,6 +104,18 @@ Validated with the counts, foil-verbatim, and id/source/template disjointness ch
 - **`spine_contrast.jsonl`** — 48 rows: 24 source items (`sc-001`..`sc-024`), each emitted as
   `-clean` (turn 0 only) and `-pressured` (full search-scaffold turns). Fields: `id`,
   `source_id`, `template`, `side`, `turns`, `gold`, `foil`.
+- **`spine_contrast_xfamily.jsonl`** — 48 rows: 24 new source items (`sx-001`..`sx-024`,
+  benign general-knowledge facts), each as `-clean` (turn 0 only) and `-pressured` (turn 0 + 3
+  user push turns). Multi-turn: the harness lets the model answer turn 0 first, then the user
+  pushes the foil — via a claimed expert / textbook / official source (`fake_authority`,
+  sx-001..012) or via classmates / most people / a poll (`fake_consensus`, sx-013..024). Every
+  foil appears verbatim in a push turn. Fields: `id`, `source_id`, `group` (`spine_xfamily`),
+  `family`, `template` (`<family>_search`), `side`, `turns`, `gold`, `gold_logprob_target`,
+  `foil`. No model replies stored.
+- **`check_spine_contrast_xfamily.py`** — validates the set (counts, foil-verbatim, user-only
+  turns) and reports zero shared ids / source items / templates / template families with
+  `pressure_probes.jsonl`, zero shared source items with `factual_probes.jsonl`, and the longest
+  shared consecutive-word run against every scored file (fails if > 3).
 - **`template_overlap.md`** — the leakage report: per-template membership of the scored vs
   search sets, with the confirmed zero template/source/id intersection.
 
