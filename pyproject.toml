@@ -1,0 +1,18 @@
+[project]
+name = "steering-research"
+version = "0.1.0"
+description = "Pre-registered evaluation of neuron-steering claims (eval side only: scores a harness's outputs.jsonl)"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+# Only for `python -m steer.scorer --nli` (downloads the DeBERTa refusal classifier).
+nli = ["torch>=2.4", "transformers>=4.45,<5"]
+
+[tool.setuptools]
+packages = ["steer"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
