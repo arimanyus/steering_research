@@ -88,6 +88,7 @@ class Steerer:
     def __init__(self, model):
         self.ablate = None  # unit direction (float32) projected out of every residual write
         self.add = None  # (layer, vector) added to the output of that decoder block
+        self.pos_mask = None  # optional [batch, seq] bool: steer only these prompt positions (never decode steps)
         lm = model.model
         lm.embed_tokens.register_forward_hook(self._abl_hook)
         for i, layer in enumerate(lm.layers):
@@ -96,9 +97,20 @@ class Steerer:
             layer.mlp.register_forward_hook(self._abl_hook)
             layer.register_forward_hook(partial(self._add_hook, i + 1))
 
+    def _mask(self, x):
+        """1.0 where steering applies; None when a position mask is set but does not fit this tensor."""
+        if self.pos_mask is None:
+            return 1.0
+        if tuple(x.shape[:2]) != tuple(self.pos_mask.shape):
+            return None
+        return self.pos_mask.unsqueeze(-1).float()
+
     def _proj(self, x):
+        m = self._mask(x)
+        if m is None:
+            return x
         xf = x.float()
-        return (xf - (xf @ self.ablate).unsqueeze(-1) * self.ablate).to(x.dtype)
+        return (xf - m * (xf @ self.ablate).unsqueeze(-1) * self.ablate).to(x.dtype)
 
     def _abl_hook(self, mod, inp, out):
         if self.ablate is None:
@@ -110,10 +122,13 @@ class Steerer:
     def _add_hook(self, layer, mod, inp, out):
         if self.add is None or self.add[0] != layer:
             return None
-        return (out.float() + self.add[1]).to(out.dtype)
+        m = self._mask(out)
+        if m is None:
+            return None
+        return (out.float() + m * self.add[1]).to(out.dtype)
 
-    def set(self, ablate=None, add=None):
-        self.ablate, self.add = ablate, add
+    def set(self, ablate=None, add=None, pos_mask=None):
+        self.ablate, self.add, self.pos_mask = ablate, add, pos_mask
 
 
 class Runner:
@@ -156,8 +171,16 @@ class Runner:
             out.append(torch.log_softmax(logits, -1))
         return torch.cat(out)
 
+    def _span_mask(self, lens, spans):
+        """[batch, T] bool steering mask from per-row (start, end) prompt-token spans, left-padded layout."""
+        T = max(lens)
+        m = torch.zeros(len(lens), T, dtype=torch.bool)
+        for b, (n, (s, e)) in enumerate(zip(lens, spans)):
+            m[b, T - n + s:T - n + e] = True
+        return m
+
     @torch.no_grad()
-    def continuation_logprob(self, pairs):
+    def continuation_logprob(self, pairs, spans=None):
         """Sum log-prob of each (prompt, continuation) pair under teacher forcing."""
         res = []
         for i in range(0, len(pairs), FWD_BATCH):
@@ -169,21 +192,27 @@ class Runner:
                 seqs.append(pid + cid)
                 nconts.append(len(cid))
             ids, mask, pos = self._batch(seqs)
+            if spans is not None:
+                self.steer.pos_mask = self._span_mask([len(q) for q in seqs], spans[i:i + FWD_BATCH])
             logits = self.model(input_ids=ids, attention_mask=mask, position_ids=pos).logits.float()
             lp = torch.log_softmax(logits[:, :-1], -1).gather(-1, ids[:, 1:].unsqueeze(-1)).squeeze(-1)
             for b, n in enumerate(nconts):
                 res.append(lp[b, -n:].sum().item())
         return res
 
-    def gap(self, items, prompts):
-        lps = self.continuation_logprob([(p, it[k]) for p, it in zip(prompts, items) for k in ("gold", "foil")])
+    def gap(self, items, prompts, spans=None):
+        pairs = [(p, it[k]) for p, it in zip(prompts, items) for k in ("gold", "foil")]
+        spans2 = None if spans is None else [sp for sp in spans for _ in range(2)]
+        lps = self.continuation_logprob(pairs, spans2)
         return [lps[2 * i] - lps[2 * i + 1] for i in range(len(items))]
 
     @torch.no_grad()
-    def generate(self, prompts, max_new):
+    def generate(self, prompts, max_new, spans=None):
         replies = []
         for i in range(0, len(prompts), GEN_BATCH):
             enc = self.tok(prompts[i:i + GEN_BATCH], return_tensors="pt", padding=True)
+            if spans is not None:
+                self.steer.pos_mask = self._span_mask(enc.attention_mask.sum(-1).tolist(), spans[i:i + GEN_BATCH])
             g = self.model.generate(**enc, max_new_tokens=max_new, do_sample=False, pad_token_id=self.tok.pad_token_id)
             replies += self.tok.batch_decode(g[:, enc.input_ids.shape[1]:], skip_special_tokens=True)
         return replies
