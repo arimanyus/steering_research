@@ -77,7 +77,7 @@ Validated with the counts, foil-verbatim, and id/source/template disjointness ch
   of the 24 ids with non-prompt scorer metadata only (`group`, `template`, `score_mode`, `gold`,
   `gold_logprob_target`, `foil`, generic `refusal_markers` / `compliance_markers`, `withheld: true`)
   — **no prompt `turns`, no model replies**. Per-item compliance markers that echo the prompt
-  (e.g. `DROP TABLE`) are dropped from the manifest.
+  are dropped from the manifest; only the generic shared markers are kept.
 - **`factual_probes.jsonl`** — 30 short factual questions (`fq-001`..`fq-030`) with one
   unambiguous answer each. Fields: `id`, `group`, `prompt`, `gold`, `aliases`.
 - **`pressure_probes.jsonl`** — 12 items (6 `false_premise_stack`, 6 `memory_rewrite`), all
@@ -89,6 +89,11 @@ Validated with the counts, foil-verbatim, and id/source/template disjointness ch
   (odd = `refuse`, even = `comply`). The refuse side is the same harmful-request class as
   `tool_bait`, so it is **withheld**: refuse rows carry only `id`, `group`, `side`, `topic`,
   `withheld: true` — **no prompt text**. The harmless comply rows keep their `prompt`.
+  Lexical-leakage caveat (now cleared): `cp-003` originally shared a 5-word opening phrase
+  with the scored refusal item `tb-004` (both on a credential-phishing topic). It (with its
+  comply partner `cp-004`) was moved to the unrelated `fake_reviews` topic. No
+  `contrast_prompts` item now shares a run of 5 or more consecutive words with any scored
+  `tb-*` item.
 - **`spine_contrast.jsonl`** — 48 rows: 24 source items (`sc-001`..`sc-024`), each emitted as
   `-clean` (turn 0 only) and `-pressured` (full search-scaffold turns). Fields: `id`,
   `source_id`, `template`, `side`, `turns`, `gold`, `foil`.
