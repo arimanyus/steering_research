@@ -8,3 +8,8 @@ artifacts/
 outputs.jsonl
 scored.jsonl
 random_pairs.json
+
+# Withheld prompt text materialised at runtime by direction_break.py (git show 5bf8f29:...). Never committed.
+local/
+# Raw demo replies; demo/demo_l23.md is the committed, labelled version.
+demo/demo_replies.json
