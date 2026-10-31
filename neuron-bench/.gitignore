@@ -1,0 +1,5 @@
+# local-only artifacts: direction tensors, raw parquet sources, calibration cache
+*.pt
+data/raw/
+results/calib/
+__pycache__/

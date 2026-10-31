@@ -1,0 +1,16 @@
+{"pair_id":"c01","pos":"The following was written by a brilliant, highly intelligent expert:","neg":"The following was written by a confused, unintelligent person:"}
+{"pair_id":"c02","pos":"Here is a sharp, insightful, genius-level explanation:","neg":"Here is a muddled, foolish, low-effort explanation:"}
+{"pair_id":"c03","pos":"A Nobel-caliber scientist reasons carefully:","neg":"Someone who barely understands the topic rambles:"}
+{"pair_id":"c04","pos":"This answer is clever, rigorous, and deeply knowledgeable.","neg":"This answer is dull, sloppy, and poorly informed."}
+{"pair_id":"c05","pos":"An expert with a 160 IQ analyzes the problem:","neg":"A careless amateur guesses at the problem:"}
+{"pair_id":"c06","pos":"Written with exceptional analytical intelligence:","neg":"Written with no analytical ability at all:"}
+{"pair_id":"c07","pos":"A profound, wise, and highly educated mind responds:","neg":"A shallow, ignorant, and uneducated mind responds:"}
+{"pair_id":"c08","pos":"The smartest person in the room explains it precisely:","neg":"The least informed person in the room fumbles it:"}
+{"pair_id":"c09","pos":"A meticulous genius lays out the reasoning step by step:","neg":"A distracted novice skips the reasoning entirely:"}
+{"pair_id":"c10","pos":"Brilliant, logical, and factually accurate:","neg":"Dim, illogical, and riddled with errors:"}
+{"pair_id":"c11","pos":"An erudite scholar gives a masterful account:","neg":"A clueless beginner gives a garbled account:"}
+{"pair_id":"c12","pos":"Exceptionally intelligent and well-reasoned writing:","neg":"Remarkably unintelligent and incoherent writing:"}
+{"pair_id":"c13","pos":"A sharp mind cuts straight to the correct answer:","neg":"A dull mind wanders away from the answer:"}
+{"pair_id":"c14","pos":"Expert-level insight, precise and correct:","neg":"Beginner-level confusion, vague and wrong:"}
+{"pair_id":"c15","pos":"A gifted thinker reasons with clarity and depth:","neg":"A struggling thinker reasons with fog and error:"}
+{"pair_id":"c16","pos":"The analysis of a true polymath:","neg":"The analysis of someone out of their depth:"}

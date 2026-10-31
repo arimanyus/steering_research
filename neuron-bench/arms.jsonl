@@ -1,0 +1,211 @@
+{"arm_id": "stock", "layer": null, "neuron": null, "dose_mult": null, "sign_note": "no edit"}
+{"arm_id": "nisten_L8N1955_d-5", "layer": 8, "neuron": 1955, "dose_mult": -5, "op": "add", "sign_note": "add -5 x mean|act| (nisten claim; layer 0-indexed, ambiguity noted in /workspace/neuronbench/target_check.md)"}
+{"arm_id": "nisten_L8N1955_d0", "layer": 8, "neuron": 1955, "dose_mult": 0, "op": "ablate", "sign_note": "ablate 0 x mean|act| (nisten claim; layer 0-indexed, ambiguity noted in /workspace/neuronbench/target_check.md)"}
+{"arm_id": "nisten_L8N1955_d2", "layer": 8, "neuron": 1955, "dose_mult": 2, "op": "add", "sign_note": "add 2 x mean|act| (nisten claim; layer 0-indexed, ambiguity noted in /workspace/neuronbench/target_check.md)"}
+{"arm_id": "nisten_L8N1955_d5", "layer": 8, "neuron": 1955, "dose_mult": 5, "op": "add", "sign_note": "add 5 x mean|act| (nisten claim; layer 0-indexed, ambiguity noted in /workspace/neuronbench/target_check.md)"}
+{"arm_id": "nisten_L8N1955_d10", "layer": 8, "neuron": 1955, "dose_mult": 10, "op": "add", "sign_note": "add 10 x mean|act| (nisten claim; layer 0-indexed, ambiguity noted in /workspace/neuronbench/target_check.md)"}
+{"arm_id": "lyra_pair_d-5", "layer": [14, 13], "neuron": [8949, 7956], "dose_mult": [-5, 5], "op": "add", "components": [{"layer": 14, "neuron": 8949, "dose_mult": -5, "sign": 1}, {"layer": 13, "neuron": 7956, "dose_mult": 5, "sign": -1}], "sign_note": "sign convention as /workspace/steer-withheld/tbL/run.py:54-55 (L14 n8949 +1, L13 n7956 -1); dose_mult list = dose*sign per component, each in multiples of its OWN mean|act|. Note run.py scaled doses by resid-norm/||down_proj col||, not mean|act|; here Maya's mean|act| unit is used"}
+{"arm_id": "lyra_pair_d0", "layer": [14, 13], "neuron": [8949, 7956], "dose_mult": [0, 0], "op": "ablate", "components": [{"layer": 14, "neuron": 8949, "dose_mult": 0, "sign": 1}, {"layer": 13, "neuron": 7956, "dose_mult": 0, "sign": -1}], "sign_note": "sign convention as /workspace/steer-withheld/tbL/run.py:54-55 (L14 n8949 +1, L13 n7956 -1); dose_mult list = dose*sign per component, each in multiples of its OWN mean|act|. Note run.py scaled doses by resid-norm/||down_proj col||, not mean|act|; here Maya's mean|act| unit is used"}
+{"arm_id": "lyra_pair_d2", "layer": [14, 13], "neuron": [8949, 7956], "dose_mult": [2, -2], "op": "add", "components": [{"layer": 14, "neuron": 8949, "dose_mult": 2, "sign": 1}, {"layer": 13, "neuron": 7956, "dose_mult": -2, "sign": -1}], "sign_note": "sign convention as /workspace/steer-withheld/tbL/run.py:54-55 (L14 n8949 +1, L13 n7956 -1); dose_mult list = dose*sign per component, each in multiples of its OWN mean|act|. Note run.py scaled doses by resid-norm/||down_proj col||, not mean|act|; here Maya's mean|act| unit is used"}
+{"arm_id": "lyra_pair_d5", "layer": [14, 13], "neuron": [8949, 7956], "dose_mult": [5, -5], "op": "add", "components": [{"layer": 14, "neuron": 8949, "dose_mult": 5, "sign": 1}, {"layer": 13, "neuron": 7956, "dose_mult": -5, "sign": -1}], "sign_note": "sign convention as /workspace/steer-withheld/tbL/run.py:54-55 (L14 n8949 +1, L13 n7956 -1); dose_mult list = dose*sign per component, each in multiples of its OWN mean|act|. Note run.py scaled doses by resid-norm/||down_proj col||, not mean|act|; here Maya's mean|act| unit is used"}
+{"arm_id": "lyra_pair_d10", "layer": [14, 13], "neuron": [8949, 7956], "dose_mult": [10, -10], "op": "add", "components": [{"layer": 14, "neuron": 8949, "dose_mult": 10, "sign": 1}, {"layer": 13, "neuron": 7956, "dose_mult": -10, "sign": -1}], "sign_note": "sign convention as /workspace/steer-withheld/tbL/run.py:54-55 (L14 n8949 +1, L13 n7956 -1); dose_mult list = dose*sign per component, each in multiples of its OWN mean|act|. Note run.py scaled doses by resid-norm/||down_proj col||, not mean|act|; here Maya's mean|act| unit is used"}
+{"arm_id": "rand_L8_k00_n4014_d-5", "layer": 8, "neuron": 4014, "dose_mult": -5, "op": "add", "random_rank_k": 0, "sign_note": "random control neuron 0; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k00_n4014_d0", "layer": 8, "neuron": 4014, "dose_mult": 0, "op": "ablate", "random_rank_k": 0, "sign_note": "random control neuron 0; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k00_n4014_d2", "layer": 8, "neuron": 4014, "dose_mult": 2, "op": "add", "random_rank_k": 0, "sign_note": "random control neuron 0; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k00_n4014_d5", "layer": 8, "neuron": 4014, "dose_mult": 5, "op": "add", "random_rank_k": 0, "sign_note": "random control neuron 0; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k00_n4014_d10", "layer": 8, "neuron": 4014, "dose_mult": 10, "op": "add", "random_rank_k": 0, "sign_note": "random control neuron 0; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k01_n3596_d-5", "layer": 8, "neuron": 3596, "dose_mult": -5, "op": "add", "random_rank_k": 1, "sign_note": "random control neuron 1; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k01_n3596_d0", "layer": 8, "neuron": 3596, "dose_mult": 0, "op": "ablate", "random_rank_k": 1, "sign_note": "random control neuron 1; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k01_n3596_d2", "layer": 8, "neuron": 3596, "dose_mult": 2, "op": "add", "random_rank_k": 1, "sign_note": "random control neuron 1; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k01_n3596_d5", "layer": 8, "neuron": 3596, "dose_mult": 5, "op": "add", "random_rank_k": 1, "sign_note": "random control neuron 1; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k01_n3596_d10", "layer": 8, "neuron": 3596, "dose_mult": 10, "op": "add", "random_rank_k": 1, "sign_note": "random control neuron 1; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k02_n831_d-5", "layer": 8, "neuron": 831, "dose_mult": -5, "op": "add", "random_rank_k": 2, "sign_note": "random control neuron 2; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k02_n831_d0", "layer": 8, "neuron": 831, "dose_mult": 0, "op": "ablate", "random_rank_k": 2, "sign_note": "random control neuron 2; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k02_n831_d2", "layer": 8, "neuron": 831, "dose_mult": 2, "op": "add", "random_rank_k": 2, "sign_note": "random control neuron 2; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k02_n831_d5", "layer": 8, "neuron": 831, "dose_mult": 5, "op": "add", "random_rank_k": 2, "sign_note": "random control neuron 2; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k02_n831_d10", "layer": 8, "neuron": 831, "dose_mult": 10, "op": "add", "random_rank_k": 2, "sign_note": "random control neuron 2; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k03_n9063_d-5", "layer": 8, "neuron": 9063, "dose_mult": -5, "op": "add", "random_rank_k": 3, "sign_note": "random control neuron 3; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k03_n9063_d0", "layer": 8, "neuron": 9063, "dose_mult": 0, "op": "ablate", "random_rank_k": 3, "sign_note": "random control neuron 3; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k03_n9063_d2", "layer": 8, "neuron": 9063, "dose_mult": 2, "op": "add", "random_rank_k": 3, "sign_note": "random control neuron 3; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k03_n9063_d5", "layer": 8, "neuron": 9063, "dose_mult": 5, "op": "add", "random_rank_k": 3, "sign_note": "random control neuron 3; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k03_n9063_d10", "layer": 8, "neuron": 9063, "dose_mult": 10, "op": "add", "random_rank_k": 3, "sign_note": "random control neuron 3; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k04_n4918_d-5", "layer": 8, "neuron": 4918, "dose_mult": -5, "op": "add", "random_rank_k": 4, "sign_note": "random control neuron 4; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k04_n4918_d0", "layer": 8, "neuron": 4918, "dose_mult": 0, "op": "ablate", "random_rank_k": 4, "sign_note": "random control neuron 4; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k04_n4918_d2", "layer": 8, "neuron": 4918, "dose_mult": 2, "op": "add", "random_rank_k": 4, "sign_note": "random control neuron 4; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k04_n4918_d5", "layer": 8, "neuron": 4918, "dose_mult": 5, "op": "add", "random_rank_k": 4, "sign_note": "random control neuron 4; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k04_n4918_d10", "layer": 8, "neuron": 4918, "dose_mult": 10, "op": "add", "random_rank_k": 4, "sign_note": "random control neuron 4; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k05_n4711_d-5", "layer": 8, "neuron": 4711, "dose_mult": -5, "op": "add", "random_rank_k": 5, "sign_note": "random control neuron 5; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k05_n4711_d0", "layer": 8, "neuron": 4711, "dose_mult": 0, "op": "ablate", "random_rank_k": 5, "sign_note": "random control neuron 5; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k05_n4711_d2", "layer": 8, "neuron": 4711, "dose_mult": 2, "op": "add", "random_rank_k": 5, "sign_note": "random control neuron 5; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k05_n4711_d5", "layer": 8, "neuron": 4711, "dose_mult": 5, "op": "add", "random_rank_k": 5, "sign_note": "random control neuron 5; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k05_n4711_d10", "layer": 8, "neuron": 4711, "dose_mult": 10, "op": "add", "random_rank_k": 5, "sign_note": "random control neuron 5; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k06_n338_d-5", "layer": 8, "neuron": 338, "dose_mult": -5, "op": "add", "random_rank_k": 6, "sign_note": "random control neuron 6; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k06_n338_d0", "layer": 8, "neuron": 338, "dose_mult": 0, "op": "ablate", "random_rank_k": 6, "sign_note": "random control neuron 6; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k06_n338_d2", "layer": 8, "neuron": 338, "dose_mult": 2, "op": "add", "random_rank_k": 6, "sign_note": "random control neuron 6; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k06_n338_d5", "layer": 8, "neuron": 338, "dose_mult": 5, "op": "add", "random_rank_k": 6, "sign_note": "random control neuron 6; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k06_n338_d10", "layer": 8, "neuron": 338, "dose_mult": 10, "op": "add", "random_rank_k": 6, "sign_note": "random control neuron 6; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k07_n5752_d-5", "layer": 8, "neuron": 5752, "dose_mult": -5, "op": "add", "random_rank_k": 7, "sign_note": "random control neuron 7; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k07_n5752_d0", "layer": 8, "neuron": 5752, "dose_mult": 0, "op": "ablate", "random_rank_k": 7, "sign_note": "random control neuron 7; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k07_n5752_d2", "layer": 8, "neuron": 5752, "dose_mult": 2, "op": "add", "random_rank_k": 7, "sign_note": "random control neuron 7; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k07_n5752_d5", "layer": 8, "neuron": 5752, "dose_mult": 5, "op": "add", "random_rank_k": 7, "sign_note": "random control neuron 7; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k07_n5752_d10", "layer": 8, "neuron": 5752, "dose_mult": 10, "op": "add", "random_rank_k": 7, "sign_note": "random control neuron 7; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k08_n9011_d-5", "layer": 8, "neuron": 9011, "dose_mult": -5, "op": "add", "random_rank_k": 8, "sign_note": "random control neuron 8; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k08_n9011_d0", "layer": 8, "neuron": 9011, "dose_mult": 0, "op": "ablate", "random_rank_k": 8, "sign_note": "random control neuron 8; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k08_n9011_d2", "layer": 8, "neuron": 9011, "dose_mult": 2, "op": "add", "random_rank_k": 8, "sign_note": "random control neuron 8; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k08_n9011_d5", "layer": 8, "neuron": 9011, "dose_mult": 5, "op": "add", "random_rank_k": 8, "sign_note": "random control neuron 8; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k08_n9011_d10", "layer": 8, "neuron": 9011, "dose_mult": 10, "op": "add", "random_rank_k": 8, "sign_note": "random control neuron 8; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k09_n6614_d-5", "layer": 8, "neuron": 6614, "dose_mult": -5, "op": "add", "random_rank_k": 9, "sign_note": "random control neuron 9; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k09_n6614_d0", "layer": 8, "neuron": 6614, "dose_mult": 0, "op": "ablate", "random_rank_k": 9, "sign_note": "random control neuron 9; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k09_n6614_d2", "layer": 8, "neuron": 6614, "dose_mult": 2, "op": "add", "random_rank_k": 9, "sign_note": "random control neuron 9; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k09_n6614_d5", "layer": 8, "neuron": 6614, "dose_mult": 5, "op": "add", "random_rank_k": 9, "sign_note": "random control neuron 9; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k09_n6614_d10", "layer": 8, "neuron": 6614, "dose_mult": 10, "op": "add", "random_rank_k": 9, "sign_note": "random control neuron 9; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k10_n277_d-5", "layer": 8, "neuron": 277, "dose_mult": -5, "op": "add", "random_rank_k": 10, "sign_note": "random control neuron 10; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k10_n277_d0", "layer": 8, "neuron": 277, "dose_mult": 0, "op": "ablate", "random_rank_k": 10, "sign_note": "random control neuron 10; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k10_n277_d2", "layer": 8, "neuron": 277, "dose_mult": 2, "op": "add", "random_rank_k": 10, "sign_note": "random control neuron 10; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k10_n277_d5", "layer": 8, "neuron": 277, "dose_mult": 5, "op": "add", "random_rank_k": 10, "sign_note": "random control neuron 10; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k10_n277_d10", "layer": 8, "neuron": 277, "dose_mult": 10, "op": "add", "random_rank_k": 10, "sign_note": "random control neuron 10; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k11_n4357_d-5", "layer": 8, "neuron": 4357, "dose_mult": -5, "op": "add", "random_rank_k": 11, "sign_note": "random control neuron 11; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k11_n4357_d0", "layer": 8, "neuron": 4357, "dose_mult": 0, "op": "ablate", "random_rank_k": 11, "sign_note": "random control neuron 11; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k11_n4357_d2", "layer": 8, "neuron": 4357, "dose_mult": 2, "op": "add", "random_rank_k": 11, "sign_note": "random control neuron 11; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k11_n4357_d5", "layer": 8, "neuron": 4357, "dose_mult": 5, "op": "add", "random_rank_k": 11, "sign_note": "random control neuron 11; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k11_n4357_d10", "layer": 8, "neuron": 4357, "dose_mult": 10, "op": "add", "random_rank_k": 11, "sign_note": "random control neuron 11; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k12_n7000_d-5", "layer": 8, "neuron": 7000, "dose_mult": -5, "op": "add", "random_rank_k": 12, "sign_note": "random control neuron 12; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k12_n7000_d0", "layer": 8, "neuron": 7000, "dose_mult": 0, "op": "ablate", "random_rank_k": 12, "sign_note": "random control neuron 12; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k12_n7000_d2", "layer": 8, "neuron": 7000, "dose_mult": 2, "op": "add", "random_rank_k": 12, "sign_note": "random control neuron 12; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k12_n7000_d5", "layer": 8, "neuron": 7000, "dose_mult": 5, "op": "add", "random_rank_k": 12, "sign_note": "random control neuron 12; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k12_n7000_d10", "layer": 8, "neuron": 7000, "dose_mult": 10, "op": "add", "random_rank_k": 12, "sign_note": "random control neuron 12; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k13_n8488_d-5", "layer": 8, "neuron": 8488, "dose_mult": -5, "op": "add", "random_rank_k": 13, "sign_note": "random control neuron 13; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k13_n8488_d0", "layer": 8, "neuron": 8488, "dose_mult": 0, "op": "ablate", "random_rank_k": 13, "sign_note": "random control neuron 13; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k13_n8488_d2", "layer": 8, "neuron": 8488, "dose_mult": 2, "op": "add", "random_rank_k": 13, "sign_note": "random control neuron 13; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k13_n8488_d5", "layer": 8, "neuron": 8488, "dose_mult": 5, "op": "add", "random_rank_k": 13, "sign_note": "random control neuron 13; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k13_n8488_d10", "layer": 8, "neuron": 8488, "dose_mult": 10, "op": "add", "random_rank_k": 13, "sign_note": "random control neuron 13; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k14_n7505_d-5", "layer": 8, "neuron": 7505, "dose_mult": -5, "op": "add", "random_rank_k": 14, "sign_note": "random control neuron 14; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k14_n7505_d0", "layer": 8, "neuron": 7505, "dose_mult": 0, "op": "ablate", "random_rank_k": 14, "sign_note": "random control neuron 14; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k14_n7505_d2", "layer": 8, "neuron": 7505, "dose_mult": 2, "op": "add", "random_rank_k": 14, "sign_note": "random control neuron 14; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k14_n7505_d5", "layer": 8, "neuron": 7505, "dose_mult": 5, "op": "add", "random_rank_k": 14, "sign_note": "random control neuron 14; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k14_n7505_d10", "layer": 8, "neuron": 7505, "dose_mult": 10, "op": "add", "random_rank_k": 14, "sign_note": "random control neuron 14; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k15_n9195_d-5", "layer": 8, "neuron": 9195, "dose_mult": -5, "op": "add", "random_rank_k": 15, "sign_note": "random control neuron 15; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k15_n9195_d0", "layer": 8, "neuron": 9195, "dose_mult": 0, "op": "ablate", "random_rank_k": 15, "sign_note": "random control neuron 15; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k15_n9195_d2", "layer": 8, "neuron": 9195, "dose_mult": 2, "op": "add", "random_rank_k": 15, "sign_note": "random control neuron 15; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k15_n9195_d5", "layer": 8, "neuron": 9195, "dose_mult": 5, "op": "add", "random_rank_k": 15, "sign_note": "random control neuron 15; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k15_n9195_d10", "layer": 8, "neuron": 9195, "dose_mult": 10, "op": "add", "random_rank_k": 15, "sign_note": "random control neuron 15; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k16_n7277_d-5", "layer": 8, "neuron": 7277, "dose_mult": -5, "op": "add", "random_rank_k": 16, "sign_note": "random control neuron 16; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k16_n7277_d0", "layer": 8, "neuron": 7277, "dose_mult": 0, "op": "ablate", "random_rank_k": 16, "sign_note": "random control neuron 16; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k16_n7277_d2", "layer": 8, "neuron": 7277, "dose_mult": 2, "op": "add", "random_rank_k": 16, "sign_note": "random control neuron 16; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k16_n7277_d5", "layer": 8, "neuron": 7277, "dose_mult": 5, "op": "add", "random_rank_k": 16, "sign_note": "random control neuron 16; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k16_n7277_d10", "layer": 8, "neuron": 7277, "dose_mult": 10, "op": "add", "random_rank_k": 16, "sign_note": "random control neuron 16; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k17_n305_d-5", "layer": 8, "neuron": 305, "dose_mult": -5, "op": "add", "random_rank_k": 17, "sign_note": "random control neuron 17; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k17_n305_d0", "layer": 8, "neuron": 305, "dose_mult": 0, "op": "ablate", "random_rank_k": 17, "sign_note": "random control neuron 17; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k17_n305_d2", "layer": 8, "neuron": 305, "dose_mult": 2, "op": "add", "random_rank_k": 17, "sign_note": "random control neuron 17; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k17_n305_d5", "layer": 8, "neuron": 305, "dose_mult": 5, "op": "add", "random_rank_k": 17, "sign_note": "random control neuron 17; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k17_n305_d10", "layer": 8, "neuron": 305, "dose_mult": 10, "op": "add", "random_rank_k": 17, "sign_note": "random control neuron 17; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k18_n116_d-5", "layer": 8, "neuron": 116, "dose_mult": -5, "op": "add", "random_rank_k": 18, "sign_note": "random control neuron 18; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k18_n116_d0", "layer": 8, "neuron": 116, "dose_mult": 0, "op": "ablate", "random_rank_k": 18, "sign_note": "random control neuron 18; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k18_n116_d2", "layer": 8, "neuron": 116, "dose_mult": 2, "op": "add", "random_rank_k": 18, "sign_note": "random control neuron 18; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k18_n116_d5", "layer": 8, "neuron": 116, "dose_mult": 5, "op": "add", "random_rank_k": 18, "sign_note": "random control neuron 18; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k18_n116_d10", "layer": 8, "neuron": 116, "dose_mult": 10, "op": "add", "random_rank_k": 18, "sign_note": "random control neuron 18; add 10 x its own mean|act|"}
+{"arm_id": "rand_L8_k19_n3711_d-5", "layer": 8, "neuron": 3711, "dose_mult": -5, "op": "add", "random_rank_k": 19, "sign_note": "random control neuron 19; add -5 x its own mean|act|"}
+{"arm_id": "rand_L8_k19_n3711_d0", "layer": 8, "neuron": 3711, "dose_mult": 0, "op": "ablate", "random_rank_k": 19, "sign_note": "random control neuron 19; ablate 0 x its own mean|act|"}
+{"arm_id": "rand_L8_k19_n3711_d2", "layer": 8, "neuron": 3711, "dose_mult": 2, "op": "add", "random_rank_k": 19, "sign_note": "random control neuron 19; add 2 x its own mean|act|"}
+{"arm_id": "rand_L8_k19_n3711_d5", "layer": 8, "neuron": 3711, "dose_mult": 5, "op": "add", "random_rank_k": 19, "sign_note": "random control neuron 19; add 5 x its own mean|act|"}
+{"arm_id": "rand_L8_k19_n3711_d10", "layer": 8, "neuron": 3711, "dose_mult": 10, "op": "add", "random_rank_k": 19, "sign_note": "random control neuron 19; add 10 x its own mean|act|"}
+{"arm_id": "randpair_0_d-5", "layer": [14, 13], "neuron": [2086, 4296], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_0_d0", "layer": [14, 13], "neuron": [2086, 4296], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_0_d2", "layer": [14, 13], "neuron": [2086, 4296], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_0_d5", "layer": [14, 13], "neuron": [2086, 4296], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_0_d10", "layer": [14, 13], "neuron": [2086, 4296], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_1_d-5", "layer": [14, 13], "neuron": [8775, 4212], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_1_d0", "layer": [14, 13], "neuron": [8775, 4212], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_1_d2", "layer": [14, 13], "neuron": [8775, 4212], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_1_d5", "layer": [14, 13], "neuron": [8775, 4212], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_1_d10", "layer": [14, 13], "neuron": [8775, 4212], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_2_d-5", "layer": [14, 13], "neuron": [2414, 5274], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_2_d0", "layer": [14, 13], "neuron": [2414, 5274], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_2_d2", "layer": [14, 13], "neuron": [2414, 5274], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_2_d5", "layer": [14, 13], "neuron": [2414, 5274], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_2_d10", "layer": [14, 13], "neuron": [2414, 5274], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_3_d-5", "layer": [14, 13], "neuron": [2559, 3495], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_3_d0", "layer": [14, 13], "neuron": [2559, 3495], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_3_d2", "layer": [14, 13], "neuron": [2559, 3495], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_3_d5", "layer": [14, 13], "neuron": [2559, 3495], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_3_d10", "layer": [14, 13], "neuron": [2559, 3495], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_4_d-5", "layer": [14, 13], "neuron": [679, 1935], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_4_d0", "layer": [14, 13], "neuron": [679, 1935], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_4_d2", "layer": [14, 13], "neuron": [679, 1935], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_4_d5", "layer": [14, 13], "neuron": [679, 1935], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_4_d10", "layer": [14, 13], "neuron": [679, 1935], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_5_d-5", "layer": [14, 13], "neuron": [363, 9154], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_5_d0", "layer": [14, 13], "neuron": [363, 9154], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_5_d2", "layer": [14, 13], "neuron": [363, 9154], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_5_d5", "layer": [14, 13], "neuron": [363, 9154], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_5_d10", "layer": [14, 13], "neuron": [363, 9154], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_6_d-5", "layer": [14, 13], "neuron": [5727, 8219], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_6_d0", "layer": [14, 13], "neuron": [5727, 8219], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_6_d2", "layer": [14, 13], "neuron": [5727, 8219], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_6_d5", "layer": [14, 13], "neuron": [5727, 8219], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_6_d10", "layer": [14, 13], "neuron": [5727, 8219], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_7_d-5", "layer": [14, 13], "neuron": [4003, 7921], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_7_d0", "layer": [14, 13], "neuron": [4003, 7921], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_7_d2", "layer": [14, 13], "neuron": [4003, 7921], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_7_d5", "layer": [14, 13], "neuron": [4003, 7921], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_7_d10", "layer": [14, 13], "neuron": [4003, 7921], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_8_d-5", "layer": [14, 13], "neuron": [2843, 9185], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_8_d0", "layer": [14, 13], "neuron": [2843, 9185], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_8_d2", "layer": [14, 13], "neuron": [2843, 9185], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_8_d5", "layer": [14, 13], "neuron": [2843, 9185], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_8_d10", "layer": [14, 13], "neuron": [2843, 9185], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_9_d-5", "layer": [14, 13], "neuron": [2866, 6473], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_9_d0", "layer": [14, 13], "neuron": [2866, 6473], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_9_d2", "layer": [14, 13], "neuron": [2866, 6473], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_9_d5", "layer": [14, 13], "neuron": [2866, 6473], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_9_d10", "layer": [14, 13], "neuron": [2866, 6473], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_10_d-5", "layer": [14, 13], "neuron": [1349, 689], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_10_d0", "layer": [14, 13], "neuron": [1349, 689], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_10_d2", "layer": [14, 13], "neuron": [1349, 689], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_10_d5", "layer": [14, 13], "neuron": [1349, 689], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_10_d10", "layer": [14, 13], "neuron": [1349, 689], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_11_d-5", "layer": [14, 13], "neuron": [7690, 3318], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_11_d0", "layer": [14, 13], "neuron": [7690, 3318], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_11_d2", "layer": [14, 13], "neuron": [7690, 3318], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_11_d5", "layer": [14, 13], "neuron": [7690, 3318], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_11_d10", "layer": [14, 13], "neuron": [7690, 3318], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_12_d-5", "layer": [14, 13], "neuron": [3119, 8982], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_12_d0", "layer": [14, 13], "neuron": [3119, 8982], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_12_d2", "layer": [14, 13], "neuron": [3119, 8982], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_12_d5", "layer": [14, 13], "neuron": [3119, 8982], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_12_d10", "layer": [14, 13], "neuron": [3119, 8982], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_13_d-5", "layer": [14, 13], "neuron": [1976, 159], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_13_d0", "layer": [14, 13], "neuron": [1976, 159], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_13_d2", "layer": [14, 13], "neuron": [1976, 159], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_13_d5", "layer": [14, 13], "neuron": [1976, 159], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_13_d10", "layer": [14, 13], "neuron": [1976, 159], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_14_d-5", "layer": [14, 13], "neuron": [7738, 1548], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_14_d0", "layer": [14, 13], "neuron": [7738, 1548], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_14_d2", "layer": [14, 13], "neuron": [7738, 1548], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_14_d5", "layer": [14, 13], "neuron": [7738, 1548], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_14_d10", "layer": [14, 13], "neuron": [7738, 1548], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_15_d-5", "layer": [14, 13], "neuron": [6410, 5298], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_15_d0", "layer": [14, 13], "neuron": [6410, 5298], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_15_d2", "layer": [14, 13], "neuron": [6410, 5298], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_15_d5", "layer": [14, 13], "neuron": [6410, 5298], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_15_d10", "layer": [14, 13], "neuron": [6410, 5298], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_16_d-5", "layer": [14, 13], "neuron": [4297, 480], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_16_d0", "layer": [14, 13], "neuron": [4297, 480], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_16_d2", "layer": [14, 13], "neuron": [4297, 480], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_16_d5", "layer": [14, 13], "neuron": [4297, 480], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_16_d10", "layer": [14, 13], "neuron": [4297, 480], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_17_d-5", "layer": [14, 13], "neuron": [3807, 6508], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_17_d0", "layer": [14, 13], "neuron": [3807, 6508], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_17_d2", "layer": [14, 13], "neuron": [3807, 6508], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_17_d5", "layer": [14, 13], "neuron": [3807, 6508], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_17_d10", "layer": [14, 13], "neuron": [3807, 6508], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_18_d-5", "layer": [14, 13], "neuron": [1845, 6783], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_18_d0", "layer": [14, 13], "neuron": [1845, 6783], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_18_d2", "layer": [14, 13], "neuron": [1845, 6783], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_18_d5", "layer": [14, 13], "neuron": [1845, 6783], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_18_d10", "layer": [14, 13], "neuron": [1845, 6783], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_19_d-5", "layer": [14, 13], "neuron": [7029, 8697], "dose_mult": [-5, 5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_19_d0", "layer": [14, 13], "neuron": [7029, 8697], "dose_mult": [0, 0], "op": "ablate", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_19_d2", "layer": [14, 13], "neuron": [7029, 8697], "dose_mult": [2, -2], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_19_d5", "layer": [14, 13], "neuron": [7029, 8697], "dose_mult": [5, -5], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
+{"arm_id": "randpair_19_d10", "layer": [14, 13], "neuron": [7029, 8697], "dose_mult": [10, -10], "op": "add", "sign_note": "random L14 +1 / L13 -1 control for Lyra pair, seed 4343"}
