@@ -217,5 +217,565 @@
     "mult_equiv_signed": 87.20681800321911
    }
   ]
+ },
+ "rand_L8_k06_n338_d10": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 338,
+    "dose_mult": 10,
+    "op": "add",
+    "scale_mean_abs": 0.06247338652610779,
+    "mean_signed_act": 0.005888613406568766,
+    "delta": 0.6247338652610779,
+    "mult_equiv_abs": 11,
+    "mult_equiv_signed": 107.09184575849136
+   }
+  ]
+ },
+ "rand_L8_k07_n5752_d-5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 5752,
+    "dose_mult": -5,
+    "op": "add",
+    "scale_mean_abs": 0.04126957803964615,
+    "mean_signed_act": 0.0007730827201157808,
+    "delta": -0.20634789019823074,
+    "mult_equiv_abs": -4,
+    "mult_equiv_signed": -265.9156674040354
+   }
+  ]
+ },
+ "rand_L8_k07_n5752_d0": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 5752,
+    "dose_mult": 0,
+    "op": "ablate",
+    "scale_mean_abs": 0.04126957803964615,
+    "mean_signed_act": 0.0007730827201157808,
+    "delta": null,
+    "mult_equiv_abs": 0.0,
+    "mult_equiv_signed": 0.0
+   }
+  ]
+ },
+ "rand_L8_k07_n5752_d2": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 5752,
+    "dose_mult": 2,
+    "op": "add",
+    "scale_mean_abs": 0.04126957803964615,
+    "mean_signed_act": 0.0007730827201157808,
+    "delta": 0.0825391560792923,
+    "mult_equiv_abs": 3,
+    "mult_equiv_signed": 107.76626696161416
+   }
+  ]
+ },
+ "rand_L8_k07_n5752_d5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 5752,
+    "dose_mult": 5,
+    "op": "add",
+    "scale_mean_abs": 0.04126957803964615,
+    "mean_signed_act": 0.0007730827201157808,
+    "delta": 0.20634789019823074,
+    "mult_equiv_abs": 6,
+    "mult_equiv_signed": 267.9156674040354
+   }
+  ]
+ },
+ "rand_L8_k07_n5752_d10": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 5752,
+    "dose_mult": 10,
+    "op": "add",
+    "scale_mean_abs": 0.04126957803964615,
+    "mean_signed_act": 0.0007730827201157808,
+    "delta": 0.4126957803964615,
+    "mult_equiv_abs": 11,
+    "mult_equiv_signed": 534.8313348080708
+   }
+  ]
+ },
+ "rand_L8_k08_n9011_d-5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 9011,
+    "dose_mult": -5,
+    "op": "add",
+    "scale_mean_abs": 0.047011591494083405,
+    "mean_signed_act": -0.009413350373506546,
+    "delta": -0.23505795747041702,
+    "mult_equiv_abs": -4,
+    "mult_equiv_signed": 25.970700987820145
+   }
+  ]
+ },
+ "rand_L8_k08_n9011_d0": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 9011,
+    "dose_mult": 0,
+    "op": "ablate",
+    "scale_mean_abs": 0.047011591494083405,
+    "mean_signed_act": -0.009413350373506546,
+    "delta": null,
+    "mult_equiv_abs": 0.0,
+    "mult_equiv_signed": 0.0
+   }
+  ]
+ },
+ "rand_L8_k08_n9011_d2": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 9011,
+    "dose_mult": 2,
+    "op": "add",
+    "scale_mean_abs": 0.047011591494083405,
+    "mean_signed_act": -0.009413350373506546,
+    "delta": 0.09402318298816681,
+    "mult_equiv_abs": 3,
+    "mult_equiv_signed": -8.988280395128058
+   }
+  ]
+ },
+ "rand_L8_k08_n9011_d5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 9011,
+    "dose_mult": 5,
+    "op": "add",
+    "scale_mean_abs": 0.047011591494083405,
+    "mean_signed_act": -0.009413350373506546,
+    "delta": 0.23505795747041702,
+    "mult_equiv_abs": 6,
+    "mult_equiv_signed": -23.970700987820145
+   }
+  ]
+ },
+ "rand_L8_k08_n9011_d10": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 9011,
+    "dose_mult": 10,
+    "op": "add",
+    "scale_mean_abs": 0.047011591494083405,
+    "mean_signed_act": -0.009413350373506546,
+    "delta": 0.47011591494083405,
+    "mult_equiv_abs": 11,
+    "mult_equiv_signed": -48.94140197564029
+   }
+  ]
+ },
+ "rand_L8_k09_n6614_d-5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 6614,
+    "dose_mult": -5,
+    "op": "add",
+    "scale_mean_abs": 0.047183383256196976,
+    "mean_signed_act": 0.016371294856071472,
+    "delta": -0.23591691628098488,
+    "mult_equiv_abs": -4,
+    "mult_equiv_signed": -13.410400542843593
+   }
+  ]
+ },
+ "rand_L8_k09_n6614_d0": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 6614,
+    "dose_mult": 0,
+    "op": "ablate",
+    "scale_mean_abs": 0.047183383256196976,
+    "mean_signed_act": 0.016371294856071472,
+    "delta": null,
+    "mult_equiv_abs": 0.0,
+    "mult_equiv_signed": 0.0
+   }
+  ]
+ },
+ "rand_L8_k09_n6614_d2": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 6614,
+    "dose_mult": 2,
+    "op": "add",
+    "scale_mean_abs": 0.047183383256196976,
+    "mean_signed_act": 0.016371294856071472,
+    "delta": 0.09436676651239395,
+    "mult_equiv_abs": 3,
+    "mult_equiv_signed": 6.764160217137437
+   }
+  ]
+ },
+ "rand_L8_k09_n6614_d5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 6614,
+    "dose_mult": 5,
+    "op": "add",
+    "scale_mean_abs": 0.047183383256196976,
+    "mean_signed_act": 0.016371294856071472,
+    "delta": 0.23591691628098488,
+    "mult_equiv_abs": 6,
+    "mult_equiv_signed": 15.410400542843593
+   }
+  ]
+ },
+ "rand_L8_k09_n6614_d10": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 6614,
+    "dose_mult": 10,
+    "op": "add",
+    "scale_mean_abs": 0.047183383256196976,
+    "mean_signed_act": 0.016371294856071472,
+    "delta": 0.47183383256196976,
+    "mult_equiv_abs": 11,
+    "mult_equiv_signed": 29.820801085687187
+   }
+  ]
+ },
+ "rand_L8_k10_n277_d-5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 277,
+    "dose_mult": -5,
+    "op": "add",
+    "scale_mean_abs": 0.05291476845741272,
+    "mean_signed_act": 0.004164832644164562,
+    "delta": -0.2645738422870636,
+    "mult_equiv_abs": -4,
+    "mult_equiv_signed": -62.52568395701656
+   }
+  ]
+ },
+ "rand_L8_k10_n277_d0": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 277,
+    "dose_mult": 0,
+    "op": "ablate",
+    "scale_mean_abs": 0.05291476845741272,
+    "mean_signed_act": 0.004164832644164562,
+    "delta": null,
+    "mult_equiv_abs": 0.0,
+    "mult_equiv_signed": 0.0
+   }
+  ]
+ },
+ "rand_L8_k10_n277_d2": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 277,
+    "dose_mult": 2,
+    "op": "add",
+    "scale_mean_abs": 0.05291476845741272,
+    "mean_signed_act": 0.004164832644164562,
+    "delta": 0.10582953691482544,
+    "mult_equiv_abs": 3,
+    "mult_equiv_signed": 26.410273582806624
+   }
+  ]
+ },
+ "rand_L8_k10_n277_d5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 277,
+    "dose_mult": 5,
+    "op": "add",
+    "scale_mean_abs": 0.05291476845741272,
+    "mean_signed_act": 0.004164832644164562,
+    "delta": 0.2645738422870636,
+    "mult_equiv_abs": 6,
+    "mult_equiv_signed": 64.52568395701655
+   }
+  ]
+ },
+ "rand_L8_k10_n277_d10": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 277,
+    "dose_mult": 10,
+    "op": "add",
+    "scale_mean_abs": 0.05291476845741272,
+    "mean_signed_act": 0.004164832644164562,
+    "delta": 0.5291476845741272,
+    "mult_equiv_abs": 11,
+    "mult_equiv_signed": 128.0513679140331
+   }
+  ]
+ },
+ "rand_L8_k11_n4357_d-5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 4357,
+    "dose_mult": -5,
+    "op": "add",
+    "scale_mean_abs": 0.043237555772066116,
+    "mean_signed_act": -0.006360642146319151,
+    "delta": -0.21618777886033058,
+    "mult_equiv_abs": -4,
+    "mult_equiv_signed": 34.98835744680851
+   }
+  ]
+ },
+ "rand_L8_k11_n4357_d0": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 4357,
+    "dose_mult": 0,
+    "op": "ablate",
+    "scale_mean_abs": 0.043237555772066116,
+    "mean_signed_act": -0.006360642146319151,
+    "delta": null,
+    "mult_equiv_abs": 0.0,
+    "mult_equiv_signed": 0.0
+   }
+  ]
+ },
+ "rand_L8_k11_n4357_d2": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 4357,
+    "dose_mult": 2,
+    "op": "add",
+    "scale_mean_abs": 0.043237555772066116,
+    "mean_signed_act": -0.006360642146319151,
+    "delta": 0.08647511154413223,
+    "mult_equiv_abs": 3,
+    "mult_equiv_signed": -12.595342978723405
+   }
+  ]
+ },
+ "rand_L8_k11_n4357_d5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 4357,
+    "dose_mult": 5,
+    "op": "add",
+    "scale_mean_abs": 0.043237555772066116,
+    "mean_signed_act": -0.006360642146319151,
+    "delta": 0.21618777886033058,
+    "mult_equiv_abs": 6,
+    "mult_equiv_signed": -32.98835744680851
+   }
+  ]
+ },
+ "rand_L8_k11_n4357_d10": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 4357,
+    "dose_mult": 10,
+    "op": "add",
+    "scale_mean_abs": 0.043237555772066116,
+    "mean_signed_act": -0.006360642146319151,
+    "delta": 0.43237555772066116,
+    "mult_equiv_abs": 11,
+    "mult_equiv_signed": -66.97671489361701
+   }
+  ]
+ },
+ "rand_L8_k12_n7000_d-5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 7000,
+    "dose_mult": -5,
+    "op": "add",
+    "scale_mean_abs": 0.047062233090400696,
+    "mean_signed_act": -0.008265400305390358,
+    "delta": -0.23531116545200348,
+    "mult_equiv_abs": -4,
+    "mult_equiv_signed": 29.46942153528161
+   }
+  ]
+ },
+ "rand_L8_k12_n7000_d0": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 7000,
+    "dose_mult": 0,
+    "op": "ablate",
+    "scale_mean_abs": 0.047062233090400696,
+    "mean_signed_act": -0.008265400305390358,
+    "delta": null,
+    "mult_equiv_abs": 0.0,
+    "mult_equiv_signed": 0.0
+   }
+  ]
+ },
+ "rand_L8_k12_n7000_d2": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 7000,
+    "dose_mult": 2,
+    "op": "add",
+    "scale_mean_abs": 0.047062233090400696,
+    "mean_signed_act": -0.008265400305390358,
+    "delta": 0.09412446618080139,
+    "mult_equiv_abs": 3,
+    "mult_equiv_signed": -10.387768614112645
+   }
+  ]
+ },
+ "rand_L8_k12_n7000_d5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 7000,
+    "dose_mult": 5,
+    "op": "add",
+    "scale_mean_abs": 0.047062233090400696,
+    "mean_signed_act": -0.008265400305390358,
+    "delta": 0.23531116545200348,
+    "mult_equiv_abs": 6,
+    "mult_equiv_signed": -27.46942153528161
+   }
+  ]
+ },
+ "rand_L8_k12_n7000_d10": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 7000,
+    "dose_mult": 10,
+    "op": "add",
+    "scale_mean_abs": 0.047062233090400696,
+    "mean_signed_act": -0.008265400305390358,
+    "delta": 0.47062233090400696,
+    "mult_equiv_abs": 11,
+    "mult_equiv_signed": -55.93884307056322
+   }
+  ]
+ },
+ "rand_L8_k13_n8488_d-5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 8488,
+    "dose_mult": -5,
+    "op": "add",
+    "scale_mean_abs": 0.04613614082336426,
+    "mean_signed_act": 0.01905944012105465,
+    "delta": -0.2306807041168213,
+    "mult_equiv_abs": -4,
+    "mult_equiv_signed": -11.103225627388294
+   }
+  ]
+ },
+ "rand_L8_k13_n8488_d0": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 8488,
+    "dose_mult": 0,
+    "op": "ablate",
+    "scale_mean_abs": 0.04613614082336426,
+    "mean_signed_act": 0.01905944012105465,
+    "delta": null,
+    "mult_equiv_abs": 0.0,
+    "mult_equiv_signed": 0.0
+   }
+  ]
+ },
+ "rand_L8_k13_n8488_d2": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 8488,
+    "dose_mult": 2,
+    "op": "add",
+    "scale_mean_abs": 0.04613614082336426,
+    "mean_signed_act": 0.01905944012105465,
+    "delta": 0.09227228164672852,
+    "mult_equiv_abs": 3,
+    "mult_equiv_signed": 5.841290250955318
+   }
+  ]
+ },
+ "rand_L8_k13_n8488_d5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 8488,
+    "dose_mult": 5,
+    "op": "add",
+    "scale_mean_abs": 0.04613614082336426,
+    "mean_signed_act": 0.01905944012105465,
+    "delta": 0.2306807041168213,
+    "mult_equiv_abs": 6,
+    "mult_equiv_signed": 13.103225627388294
+   }
+  ]
  }
 }
