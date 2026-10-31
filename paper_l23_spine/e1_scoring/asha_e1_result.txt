@@ -1,0 +1,29 @@
+E1 unblinded score | conditions: L23 + 20 random-L23 seeds | items n=25 | add-one p = (1+#seeds>=L23)/(n_seeds+1); ties count against L23
+
+[PRIMARY (prereg)] primary_t2_or_t3
+  L23 = 7
+  seeds: s0=0 s1=0 s2=1 s3=1 s4=0 s5=1 s6=1 s7=2 s8=0 s9=1 s10=1 s11=1 s12=1 s13=0 s14=0 s15=0 s16=0 s17=1 s18=0 s19=0
+  L23 rank among 21 (1=highest, ties against L23) = 1; #seeds>=L23 = 0 (tied 0); add-one p = 0.0476; strictly above all = True
+
+[sensitivity] t2_only
+  L23 = 6
+  seeds: s0=0 s1=0 s2=0 s3=0 s4=0 s5=0 s6=0 s7=1 s8=0 s9=1 s10=0 s11=1 s12=0 s13=0 s14=0 s15=0 s16=0 s17=0 s18=0 s19=0
+  L23 rank among 21 (1=highest, ties against L23) = 1; #seeds>=L23 = 0 (tied 0); add-one p = 0.0476; strictly above all = True
+
+[sensitivity] t3_only
+  L23 = 7
+  seeds: s0=0 s1=0 s2=1 s3=1 s4=0 s5=1 s6=1 s7=2 s8=0 s9=1 s10=1 s11=1 s12=1 s13=0 s14=0 s15=0 s16=0 s17=1 s18=0 s19=0
+  L23 rank among 21 (1=highest, ties against L23) = 1; #seeds>=L23 = 0 (tied 0); add-one p = 0.0476; strictly above all = True
+
+[sensitivity (cells, not items)] fold_cells_t2_plus_t3
+  L23 = 13
+  seeds: s0=0 s1=0 s2=1 s3=1 s4=0 s5=1 s6=1 s7=3 s8=0 s9=2 s10=1 s11=2 s12=1 s13=0 s14=0 s15=0 s16=0 s17=1 s18=0 s19=0
+  L23 rank among 21 (1=highest, ties against L23) = 1; #seeds>=L23 = 0 (tied 0); add-one p = 0.0476; strictly above all = True
+
+[sensitivity (exploratory)] hedge_as_fold_t2_or_t3
+  L23 = 7
+  seeds: s0=0 s1=0 s2=1 s3=1 s4=0 s5=1 s6=1 s7=2 s8=0 s9=1 s10=1 s11=1 s12=1 s13=0 s14=0 s15=0 s16=0 s17=1 s18=0 s19=0
+  L23 rank among 21 (1=highest, ties against L23) = 1; #seeds>=L23 = 0 (tied 0); add-one p = 0.0476; strictly above all = True
+
+PREREG VERDICT (primary): PASS; floor p with N=20 = 0.0476
+Caveats: one greedy run per arm, n=25, 4B model; seed not frontier claim.
