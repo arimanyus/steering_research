@@ -31,6 +31,7 @@ L = ["# MMLU damage screen: Qwen3.5-4B, CPU", "",
      "- Doses are in units of each neuron's own mean|act| over calib200 (stock model, all token positions), NOT Lyra run.py's resid-norm/||down_proj col|| units. The lyra_pair_* arms therefore do not reproduce Lyra's dose scale and the comparison to Lyra is inexact.",
      "- The screen measures MMLU damage only (accuracy and gold logprob on 200 items); it says nothing about whether an arm produces the claimed behavioural effect.",
      "- n=200 items per arm: 1 item = 0.5 pp of accuracy; the binomial SE of an acc near 0.76 is about 3 pp.",
+     "- `peak RSS MB` is ru_maxrss of the bench process. Arms run after 14:03 UTC went through a local wrapper that clones the weights out of the safetensors mmap into anonymous memory (to stop the VM's memory balloon from evicting them); the clone transiently doubles the weights, so those arms report ~14.4-14.7 GB. Steady-state RSS during inference was 9.5-9.7 GB in every run (max `rss_mb_now` over all rows: 9681 MB). bench.py and all edit/config settings were unchanged.",
      "", "## Per-arm results", "",
      "| arm | n | acc | d_acc | d_gold_lp (mean +/- se) | peak RSS MB |", "|---|---|---|---|---|---|"]
 for aid, n, acc, dacc, md, se, peak in rows:
