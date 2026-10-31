@@ -1,0 +1,44 @@
+[    1.0s] inputs pinned; saved norm 0.9999999; candidates: ALL128=128, FIRST96=96, FIT96_MOD4=96, FIT75_RERUN=75, FIT69_ROUND2=69, HELD32=32
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]Loading weights:  10%|█         | 43/426 [00:00<00:00, 384.66it/s]Loading weights:  26%|██▌       | 109/426 [00:00<00:00, 481.68it/s]Loading weights:  37%|███▋      | 158/426 [00:00<00:00, 432.17it/s]Loading weights:  49%|████▉     | 208/426 [00:00<00:00, 412.57it/s]Loading weights:  79%|███████▉  | 337/426 [00:00<00:00, 669.46it/s]Loading weights: 100%|██████████| 426/426 [00:00<00:00, 656.48it/s]
+[    5.1s] model loaded; rss 0.9 GB; threads 4
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[   27.0s]   dirs refuse 16/128 rss 7.5 GB
+[   34.3s]   dirs refuse 32/128 rss 9.9 GB
+[   37.3s]   dirs refuse 48/128 rss 10.3 GB
+[   40.3s]   dirs refuse 64/128 rss 10.6 GB
+[   43.2s]   dirs refuse 80/128 rss 10.6 GB
+[   46.4s]   dirs refuse 96/128 rss 10.7 GB
+[   49.2s]   dirs refuse 112/128 rss 10.7 GB
+[   51.9s]   dirs refuse 128/128 rss 10.7 GB
+[   54.6s]   dirs comply 16/128 rss 10.7 GB
+[   57.4s]   dirs comply 32/128 rss 10.7 GB
+[   60.3s]   dirs comply 48/128 rss 10.7 GB
+[   63.3s]   dirs comply 64/128 rss 10.7 GB
+[   66.0s]   dirs comply 80/128 rss 10.7 GB
+[   68.8s]   dirs comply 96/128 rss 10.7 GB
+[   71.9s]   dirs comply 112/128 rss 10.7 GB
+[   74.6s]   dirs comply 128/128 rss 10.7 GB
+[   74.9s] cached /workspace/steer-withheld/refit_L23_acts.pt (69s acts, peak rss 10.7 GB)
+
+protocol variant  candidate        n hs22   hs23   hs24   hs25  
+----------------------------------------------------------------
+dirs     raw      ALL128         128 0.7994   0.9469   0.8694   0.8078  
+dirs     raw      FIRST96         96 0.8179   0.9661   0.8835   0.8161  
+dirs     raw      FIT96_MOD4      96 0.8002   0.9473   0.8697   0.8076  
+dirs     raw      FIT75_RERUN     75 0.8544   1.0000*P 0.9106   0.8355  
+dirs     raw      FIT69_ROUND2    69 0.8525   0.9963*  0.9045   0.8273  
+dirs     raw      HELD32          32 0.7950   0.9430   0.8659   0.8057  
+dirs     unitacts ALL128         128 0.8074   0.9525   0.8707   0.8066  
+dirs     unitacts FIRST96         96 0.8243   0.9681   0.8828   0.8139  
+dirs     unitacts FIT96_MOD4      96 0.8076   0.9523   0.8704   0.8060  
+dirs     unitacts FIT75_RERUN     75 0.8545   0.9983*  0.9080   0.8329  
+dirs     unitacts FIT69_ROUND2    69 0.8509   0.9931*  0.9012   0.8243  
+dirs     unitacts HELD32          32 0.8049   0.9500   0.8689   0.8058  
+
+* = cos >= 0.99   P = registered primary cell (FIT75_RERUN, hs 23, raw, dirs)
+
+PRIMARY cos = 0.999993 -> REPRODUCED
+best non-control cell: dirs/raw/FIT75_RERUN/hs23 cos 0.999993
+consistency check vs logged tbL/dirs.log: ALL128 hs23 cos 0.9469 (logged 0.9469)
+[   75.0s] wrote /workspace/steer-withheld/refit_L23_results.json
