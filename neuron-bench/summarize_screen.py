@@ -24,7 +24,8 @@ env = json.load(open(f"{OUT}/stock.summary.json"))["env"]
 L = ["# MMLU damage screen: Qwen3.5-4B, CPU", "",
      f"Stage `screen` = `data/mmlu_screen200.jsonl` (200 MMLU test items, all 57 subjects, disjoint from calib200 and mmlu500). "
      f"Zero-shot, score = log-softmax over ' A'..' D' at the last position, bs=1, no generation. dtype {env['dtype']}, torch {env['torch']}, threads {env['threads']}.",
-     "", f"Arms done: {len(rows)}/{len(arm_order)}." + (f" Missing: {', '.join(missing)}" if missing else ""), "",
+     "", f"Arms done here: {len(rows)}/{len(arm_order)}." + (f" Not in this table: {', '.join(missing)}" if missing else ""),
+     "This table covers arms.jsonl lines 1-80 (this run); lines 81-211 are run by shard agents and land under results/screen/shard{1..4}/.", "",
      "`acc` = fraction correct on the n items. `d_acc` = acc minus stock acc on the same items. `d_gold_lp` = mean over items of (gold-letter logprob under the arm minus under stock), paired per item, with standard error. Gold logprob is within the 4-letter log-softmax.",
      "", "## Caveats", "",
      "- Doses are in units of each neuron's own mean|act| over calib200 (stock model, all token positions), NOT Lyra run.py's resid-norm/||down_proj col|| units. The lyra_pair_* arms therefore do not reproduce Lyra's dose scale and the comparison to Lyra is inexact.",
