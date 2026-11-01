@@ -1,0 +1,48 @@
+{
+ "arm_id": "randpair_16_d10",
+ "config_hash": "1a746540f559d67d",
+ "edit": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 14,
+    "neuron": 4297,
+    "dose_mult": 10,
+    "op": "add",
+    "scale_mean_abs": 0.042171794921159744,
+    "mean_signed_act": -0.017673246562480927,
+    "delta": 0.42171794921159744,
+    "mult_equiv_abs": 11,
+    "mult_equiv_signed": -22.861940007495583
+   },
+   {
+    "layer": 13,
+    "neuron": 480,
+    "dose_mult": -10,
+    "op": "add",
+    "scale_mean_abs": 0.052449844777584076,
+    "mean_signed_act": -0.0117947431281209,
+    "delta": -0.5244984477758408,
+    "mult_equiv_abs": -9,
+    "mult_equiv_signed": 45.46883175652526
+   }
+  ]
+ },
+ "env": {
+  "stage": "confirm",
+  "torch": "2.15.0+cpu",
+  "dtype": "bfloat16",
+  "threads": 4,
+  "bs": 1,
+  "model": "Qwen/Qwen3.5-4B",
+  "model_snapshot": "/workspace/hf_cache/hub/models--Qwen--Qwen3.5-4B/blobs",
+  "model_hash_note": "snapshot dir name = HF revision"
+ },
+ "new_rows_this_run": 200,
+ "arm_wall_s_this_run": 213.2,
+ "peak_rss_mb_process": 14842.7,
+ "wiki": {
+  "n": 200,
+  "ppl": 14.872988032237554
+ }
+}
