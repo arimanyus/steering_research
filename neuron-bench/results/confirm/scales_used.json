@@ -1,0 +1,221 @@
+{
+ "stock": {
+  "kind": "neuron",
+  "edits": []
+ },
+ "nisten_L8N1955_d-5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 1955,
+    "dose_mult": -5,
+    "op": "add",
+    "scale_mean_abs": 0.06078021973371506,
+    "mean_signed_act": -0.003193347482010722,
+    "delta": -0.3039010986685753,
+    "mult_equiv_abs": -4,
+    "mult_equiv_signed": 96.16693700906643
+   }
+  ]
+ },
+ "nisten_L8N1955_d0": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 1955,
+    "dose_mult": 0,
+    "op": "ablate",
+    "scale_mean_abs": 0.06078021973371506,
+    "mean_signed_act": -0.003193347482010722,
+    "delta": null,
+    "mult_equiv_abs": 0.0,
+    "mult_equiv_signed": 0.0
+   }
+  ]
+ },
+ "nisten_L8N1955_d2": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 1955,
+    "dose_mult": 2,
+    "op": "add",
+    "scale_mean_abs": 0.06078021973371506,
+    "mean_signed_act": -0.003193347482010722,
+    "delta": 0.12156043946743011,
+    "mult_equiv_abs": 3,
+    "mult_equiv_signed": -37.06677480362657
+   }
+  ]
+ },
+ "nisten_L8N1955_d5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 1955,
+    "dose_mult": 5,
+    "op": "add",
+    "scale_mean_abs": 0.06078021973371506,
+    "mean_signed_act": -0.003193347482010722,
+    "delta": 0.3039010986685753,
+    "mult_equiv_abs": 6,
+    "mult_equiv_signed": -94.16693700906643
+   }
+  ]
+ },
+ "nisten_L8N1955_d10": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 8,
+    "neuron": 1955,
+    "dose_mult": 10,
+    "op": "add",
+    "scale_mean_abs": 0.06078021973371506,
+    "mean_signed_act": -0.003193347482010722,
+    "delta": 0.6078021973371506,
+    "mult_equiv_abs": 11,
+    "mult_equiv_signed": -189.33387401813286
+   }
+  ]
+ },
+ "lyra_pair_d-5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 14,
+    "neuron": 8949,
+    "dose_mult": -5,
+    "op": "add",
+    "scale_mean_abs": 0.035495296120643616,
+    "mean_signed_act": 0.0009235841571353376,
+    "delta": -0.17747648060321808,
+    "mult_equiv_abs": -4,
+    "mult_equiv_signed": -191.1605943888138
+   },
+   {
+    "layer": 13,
+    "neuron": 7956,
+    "dose_mult": 5,
+    "op": "add",
+    "scale_mean_abs": 0.03354201093316078,
+    "mean_signed_act": -0.003863596124574542,
+    "delta": 0.1677100546658039,
+    "mult_equiv_abs": 6,
+    "mult_equiv_signed": -42.40776035028043
+   }
+  ]
+ },
+ "lyra_pair_d0": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 14,
+    "neuron": 8949,
+    "dose_mult": 0,
+    "op": "ablate",
+    "scale_mean_abs": 0.035495296120643616,
+    "mean_signed_act": 0.0009235841571353376,
+    "delta": null,
+    "mult_equiv_abs": 0.0,
+    "mult_equiv_signed": 0.0
+   },
+   {
+    "layer": 13,
+    "neuron": 7956,
+    "dose_mult": 0,
+    "op": "ablate",
+    "scale_mean_abs": 0.03354201093316078,
+    "mean_signed_act": -0.003863596124574542,
+    "delta": null,
+    "mult_equiv_abs": 0.0,
+    "mult_equiv_signed": 0.0
+   }
+  ]
+ },
+ "lyra_pair_d2": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 14,
+    "neuron": 8949,
+    "dose_mult": 2,
+    "op": "add",
+    "scale_mean_abs": 0.035495296120643616,
+    "mean_signed_act": 0.0009235841571353376,
+    "delta": 0.07099059224128723,
+    "mult_equiv_abs": 3,
+    "mult_equiv_signed": 77.86423775552552
+   },
+   {
+    "layer": 13,
+    "neuron": 7956,
+    "dose_mult": -2,
+    "op": "add",
+    "scale_mean_abs": 0.03354201093316078,
+    "mean_signed_act": -0.003863596124574542,
+    "delta": -0.06708402186632156,
+    "mult_equiv_abs": -1,
+    "mult_equiv_signed": 18.36310414011217
+   }
+  ]
+ },
+ "lyra_pair_d5": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 14,
+    "neuron": 8949,
+    "dose_mult": 5,
+    "op": "add",
+    "scale_mean_abs": 0.035495296120643616,
+    "mean_signed_act": 0.0009235841571353376,
+    "delta": 0.17747648060321808,
+    "mult_equiv_abs": 6,
+    "mult_equiv_signed": 193.1605943888138
+   },
+   {
+    "layer": 13,
+    "neuron": 7956,
+    "dose_mult": -5,
+    "op": "add",
+    "scale_mean_abs": 0.03354201093316078,
+    "mean_signed_act": -0.003863596124574542,
+    "delta": -0.1677100546658039,
+    "mult_equiv_abs": -4,
+    "mult_equiv_signed": 44.40776035028043
+   }
+  ]
+ },
+ "lyra_pair_d10": {
+  "kind": "neuron",
+  "edits": [
+   {
+    "layer": 14,
+    "neuron": 8949,
+    "dose_mult": 10,
+    "op": "add",
+    "scale_mean_abs": 0.035495296120643616,
+    "mean_signed_act": 0.0009235841571353376,
+    "delta": 0.35495296120643616,
+    "mult_equiv_abs": 11,
+    "mult_equiv_signed": 385.3211887776276
+   },
+   {
+    "layer": 13,
+    "neuron": 7956,
+    "dose_mult": -10,
+    "op": "add",
+    "scale_mean_abs": 0.03354201093316078,
+    "mean_signed_act": -0.003863596124574542,
+    "delta": -0.3354201093316078,
+    "mult_equiv_abs": -9,
+    "mult_equiv_signed": 87.81552070056085
+   }
+  ]
+ }
+}
