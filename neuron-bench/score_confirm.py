@@ -13,9 +13,15 @@ DOSES = [-5, 0, 2, 5, 10]; PRIMARY = [-5, 2, 5, 10]
 TARGETS = {"L8-N1955": ("nisten_L8N1955_d{}", "rand_L8_k*_d{}"), "Lyra pair": ("lyra_pair_d{}", "randpair_*_d{}")}
 NBOOT, SEED, GATE_P, ALPHA, PPL_MAX = 10000, 0, 0.20, 0.05, 1.05
 ARM_IDS = [json.loads(l)["arm_id"] for l in open(f"{HERE}/arms.jsonl")]
-NOTES = ["Environment: results/confirm/ENV.txt (pip freeze identical to results/screen/ENV_orig.txt; torch 2.15.0+cpu, transformers 5.22.1; model snapshot 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a).",
-         "bench.py's memory guard aborted the first stage-1 launch on MemAvailable (7.1 GB < 10.5 GB; the VM's memory balloon hides free memory) with no other python process above 2 GB RSS; all runs used --no-guard.",
-         "Calibration (calib200, layers 8, 13, 14) was computed once in the stage-1 process and cached in results/calib/; stage-2 controls reuse that cache."]
+NOTES = ["Environment: results/confirm/ENV.txt (pip freeze identical to results/screen/ENV_orig.txt; torch 2.15.0+cpu, transformers 5.22.1; model snapshot 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a). "
+         "4 vCPU Intel Xeon (AMX/AVX512-bf16), 15.6 GB RAM visible to the guest plus a VM memory balloon.",
+         "bench.py's memory guard aborted the first stage-1 launch on MemAvailable (7.1 GB < 10.5 GB; the balloon hides free memory) with no other python process above 2 GB RSS, so stage 1 ran with --no-guard. The stock rerun and the stage-2 runs passed the guard (the balloon had deflated) and ran without --no-guard.",
+         "Stage-1 process 1 (plain bench.py) ran stock, nisten_L8N1955_d-5 and the first 845 rows of nisten_L8N1955_d0. It was stopped (SIGTERM, 17:30 IST) because the balloon re-inflated and evicted the mmapped weights (~5 s/item instead of ~0.5 s). "
+         "Process 2 resumed (bench.py's per-item resume; no duplicate rows, one config_hash per arm) through `run_anon.py`, which runs bench.py unchanged after copying the weights bit-exactly into anonymous memory. "
+         "All later stage-1 arms and all stage-2 controls ran through run_anon.py. The stage-1 stock run and the stock rerun both ran as plain bench.py.",
+         "Because process 2 re-listed stock and nisten_L8N1955_d-5 with 0 new rows, their summary.json files were restored to the process-1 versions. nisten_L8N1955_d0's summary covers only the 155 resumed rows.",
+         "The VM was suspended once for about 15 minutes during nisten_L8N1955_d2 (kernel 'virtual machine fork' events); the guest clock did not advance, so its wall s in the table above (657 s) excludes the pause (wall-clock duration about 26 min). Results are unaffected.",
+         "Calibration (calib200, layers 8, 13, 14) was computed once in stage-1 process 1 and cached in results/calib/; process 2 and the stage-2 controls reuse that cache."]
 
 def load(fp):
     """-> {bench: {item_id: row}} or None if the file is missing"""
@@ -167,8 +173,16 @@ def write_md(o):
          f"Every arm is paired with the one stage-1 stock run (MMLU {100 * S['mmlu']['acc']:.1f}%, ARC {100 * S['arc']['acc']:.1f}%, Wiki ppl {S['wiki']['ppl']:.3f}). "
          f"Paired bootstrap: {o['n_boot']} resamples over items/passages, seed {o['seed']}, percentile 95% CI. Holm over the {o['holm_family_size']} primary cells (expected {o['holm_family_expected']}: 2 targets x doses -5,2,5,10 x 3 benches); dose 0 (ablation) is secondary and outside the Holm family.", "",
          "b = stock right & arm wrong, c = stock wrong & arm right; net = c - b. McNemar = exact two-sided binomial on b vs c. Wiki p = two-sided Wilcoxon signed-rank on per-passage mean NLL differences (normal approximation with tie correction). "
-         f"Moved (stage-2 gate) = MMLU/ARC unadjusted McNemar p < {o['gate_p']}; Wiki perplexity-ratio 95% CI excludes 1.", "",
-         "## Stage 1: accuracy cells", "",
+         f"Moved (stage-2 gate) = MMLU/ARC unadjusted McNemar p < {o['gate_p']}; Wiki perplexity-ratio 95% CI excludes 1.", ""]
+    mv = [c for c in cells if c.get("moved")]
+    moved_txt = ", ".join(c["arm"] + " / " + c["bench"] for c in mv) or "none"
+    s2_done = [c for c in mv if c["stage2"]["n_controls"] == 20]
+    L += ["## Summary", "", f"- Cells that moved (stage-2 gate): {moved_txt}.",
+          f"- Stage 2: {'not triggered' if not mv else f'{len(s2_done)}/{len(mv)} moved cells have all 20 controls'}.",
+          "- Verdicts: " + "; ".join(f"{t}: {v['verdict']}" for t, v in o["verdicts"].items()) + ".",
+          f"- Smallest Holm-adjusted p over the primary cells: {f3(min(c['holm_p'] for c in cells if 'holm_p' in c))}"
+          + ("; no primary cell reaches Holm p < 0.05, so neither verdict can depend on the stage-2 ranks." if all(c["holm_p"] >= ALPHA for c in cells if "holm_p" in c) else "."), "",
+          "## Stage 1: accuracy cells", "",
          "| target | dose | bench | stock acc | arm acc | b | c | net | McNemar p | Holm p | d acc pts [95% CI] | d gold logprob [95% CI] | moved |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for c in cells:
         if c["bench"] == "wiki": continue
@@ -183,7 +197,6 @@ def write_md(o):
         if c.get("missing"): L.append(f"| {c['target']} | {c['dose']} | not run | | | | | |"); continue
         L.append(f"| {c['target']} | {c['dose']} | {c['stock_ppl']:.4f} | {c['arm_ppl']:.4f} | {c['ratio']:.5f} [{c['ratio_ci'][0]:.5f}, {c['ratio_ci'][1]:.5f}] | {f3(c['p'])} | "
                  f"{f3(c['holm_p']) if 'holm_p' in c else '(secondary)'} | {'**yes**' if c['moved'] else 'no'} |")
-    mv = [c for c in cells if c.get("moved")]
     L += ["", "## Stage 2: matched controls (moved cells only)", ""]
     if not mv: L.append("No cell moved; stage 2 is not triggered.")
     else:
@@ -221,7 +234,7 @@ def write_md(o):
     L += ["", "## Per-arm wall time (last invocation of each arm)", "", "| arm | rows | new rows | wall s | peak RSS MB |", "|---|---|---|---|---|"]
     for fp in sorted(glob.glob(f"{RES}/*.summary.json")) + sorted(glob.glob(f"{os.path.dirname(RERUN)}/*.summary.json")):
         s = json.load(open(fp)); rows = sum(s[b]["n"] for b in FULL if b in s)
-        L.append(f"| {os.path.relpath(fp, RES)[:-len('.summary.json')]} | {rows} | {s['new_rows_this_run']} | {s['arm_wall_s_this_run']:.0f} | {s['peak_rss_mb_process']:.0f} |")
+        L.append(f"| {os.path.relpath(fp, os.path.dirname(RES))[:-len('.summary.json')]} | {rows} | {s['new_rows_this_run']} | {s['arm_wall_s_this_run']:.0f} | {s['peak_rss_mb_process']:.0f} |")
     L += ["", "## Run notes", ""] + [f"- {n}" for n in NOTES]
     L += ["", "## Calibration scales (mean|act| on calib200): confirm recomputation vs screen rows", "",
           "| neuron | confirm | screen value(s) | relative difference |", "|---|---|---|---|"]
