@@ -1,3 +1,5 @@
+> **PARTIAL: lines 1-80 of `arms.jsonl` only (original agent).** This file omits the shard runs (`shard1/`-`shard4/`), their per-shard stock runs and random-neuron controls (e.g. a random L8 neuron at +0.114). It is not the verdict. The screen verdict over all 211 arms comes from the full shard scoring: no detectable MMLU damage; Lyra pair p = 0.24; nisten not distinguishable from random L8 neurons (two-sided rank 3-4, p = 0.14-0.19).
+
 # MMLU damage screen: Qwen3.5-4B, CPU
 
 Stage `screen` = `data/mmlu_screen200.jsonl` (200 MMLU test items, all 57 subjects, disjoint from calib200 and mmlu500). Zero-shot, score = log-softmax over ' A'..' D' at the last position, bs=1, no generation. dtype bfloat16, torch 2.15.0+cpu, threads 4.
