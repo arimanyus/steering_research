@@ -1,0 +1,49 @@
+[driver] 2026-11-01 22:22:34 IST start: bench.py --stage confirm --arm-ids randpair_*_d10 --items mmlu=0,arc=0,wiki=200 --threads 4
+[driver] bench pid 20206
+[disjoint] ok {'mmlu500': 500, 'mmlu_screen200': 200, 'calib200': 200, 'arc300': 300, 'wiki200': 200}; stage=confirm
+[plan] 20 arms x 200 forward passes ({'mmlu': 0, 'arc': 0, 'wiki': 200}) bs=1 + calibration 200; out=/workspace/neuron-bench/results
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]Loading weights:  36%|███▌      | 154/426 [00:00<00:00, 1488.01it/s]Loading weights:  71%|███████   | 303/426 [00:00<00:00, 1131.16it/s]Loading weights: 100%|██████████| 426/426 [00:00<00:00, 1316.24it/s]
+[run_anon] weights copied to anonymous memory in 11s (waited 0s for MemAvailable)
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[arm] randpair_0_d10: new=200 wiki={'n': 200, 'ppl': 14.878674617127691}
+[driver] 2026-11-01 22:26:36 IST committed randpair_0_d10
+[arm] randpair_1_d10: new=200 wiki={'n': 200, 'ppl': 14.862318240947864}
+[driver] 2026-11-01 22:30:17 IST committed randpair_1_d10
+[arm] randpair_2_d10: new=200 wiki={'n': 200, 'ppl': 14.897426461251053}
+[driver] 2026-11-01 22:33:39 IST committed randpair_2_d10
+[arm] randpair_3_d10: new=200 wiki={'n': 200, 'ppl': 14.867899476087583}
+[driver] 2026-11-01 22:37:00 IST committed randpair_3_d10
+[arm] randpair_4_d10: new=200 wiki={'n': 200, 'ppl': 14.89236026616214}
+[driver] 2026-11-01 22:40:22 IST committed randpair_4_d10
+[arm] randpair_5_d10: new=200 wiki={'n': 200, 'ppl': 14.92891588975445}
+[driver] 2026-11-01 22:43:44 IST committed randpair_5_d10
+[arm] randpair_6_d10: new=200 wiki={'n': 200, 'ppl': 14.90537003390338}
+[driver] 2026-11-01 22:47:25 IST committed randpair_6_d10
+[arm] randpair_7_d10: new=200 wiki={'n': 200, 'ppl': 14.882784481955424}
+[driver] 2026-11-01 22:50:47 IST committed randpair_7_d10
+[arm] randpair_8_d10: new=200 wiki={'n': 200, 'ppl': 14.90138707456294}
+[driver] 2026-11-01 22:54:29 IST committed randpair_8_d10
+[arm] randpair_9_d10: new=200 wiki={'n': 200, 'ppl': 14.896542437829163}
+[driver] 2026-11-01 22:57:50 IST committed randpair_9_d10
+[arm] randpair_10_d10: new=200 wiki={'n': 200, 'ppl': 14.833465993721205}
+[driver] 2026-11-01 23:01:12 IST committed randpair_10_d10
+[arm] randpair_11_d10: new=200 wiki={'n': 200, 'ppl': 14.881044618476167}
+[driver] 2026-11-01 23:04:53 IST committed randpair_11_d10
+[arm] randpair_12_d10: new=200 wiki={'n': 200, 'ppl': 14.897682821930001}
+[driver] 2026-11-01 23:08:15 IST committed randpair_12_d10
+[arm] randpair_13_d10: new=200 wiki={'n': 200, 'ppl': 14.889983091095939}
+[driver] 2026-11-01 23:11:37 IST committed randpair_13_d10
+[arm] randpair_14_d10: new=200 wiki={'n': 200, 'ppl': 14.871963542295868}
+[driver] 2026-11-01 23:15:19 IST committed randpair_14_d10
+[arm] randpair_15_d10: new=200 wiki={'n': 200, 'ppl': 14.89224804839101}
+[driver] 2026-11-01 23:18:41 IST committed randpair_15_d10
+[arm] randpair_16_d10: new=200 wiki={'n': 200, 'ppl': 14.872988032237554}
+[driver] 2026-11-01 23:22:22 IST committed randpair_16_d10
+[arm] randpair_17_d10: new=200 wiki={'n': 200, 'ppl': 14.871476656537105}
+[driver] 2026-11-01 23:25:44 IST committed randpair_17_d10
+[arm] randpair_18_d10: new=200 wiki={'n': 200, 'ppl': 14.91646126371051}
+[driver] 2026-11-01 23:29:06 IST committed randpair_18_d10
+[arm] randpair_19_d10: new=200 wiki={'n': 200, 'ppl': 14.894821420156513}
+[driver] 2026-11-01 23:32:48 IST committed randpair_19_d10
+[driver] 2026-11-01 23:32:48 IST bench exit 0

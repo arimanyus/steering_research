@@ -1,0 +1,3 @@
+[disjoint] ok {'mmlu500': 500, 'mmlu_screen200': 200, 'calib200': 200, 'arc300': 300, 'wiki200': 200}; stage=confirm
+[plan] 11 arms x 1000 forward passes ({'mmlu': 500, 'arc': 300, 'wiki': 200}) bs=1 + calibration 200; out=/workspace/neuron-bench/results
+GUARD: MemAvailable 7.1 GB < 10.5 GB. Aborting.

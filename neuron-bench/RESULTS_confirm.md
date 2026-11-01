@@ -9,7 +9,7 @@ b = stock right & arm wrong, c = stock wrong & arm right; net = c - b. McNemar =
 ## Summary
 
 - Cells that moved (stage-2 gate): nisten_L8N1955_d10 / wiki, lyra_pair_d2 / mmlu, lyra_pair_d10 / wiki.
-- Stage 2: 0/3 moved cells have all 20 controls.
+- Stage 2: 3/3 moved cells have all 20 controls.
 - Verdicts: L8-N1955: no detectable effect; Lyra pair: no detectable effect.
 - Smallest Holm-adjusted p over the primary cells: 0.253; no primary cell reaches Holm p < 0.05, so neither verdict can depend on the stage-2 ranks.
 
@@ -59,12 +59,15 @@ Each control is paired with the same stage-1 stock run. Add-one rank p = (1 + co
 
 | target | dose | bench | target effect | controls done | control min / median / max | rank p (gain) | rank p (drop) | rank p (ppl increase) | rank p (abs log ratio) |
 |---|---|---|---|---|---|---|---|---|---|
-| L8-N1955 | 10 | wiki | 1.00082 | 0/20 | pending | - | - | - | - |
-| Lyra pair | 2 | mmlu | -0.8 | 0/20 | pending | - | - | - | - |
-| Lyra pair | 10 | wiki | 1.00094 | 0/20 | pending | - | - | - | - |
+| L8-N1955 | 10 | wiki | 1.00082 | 20/20 | 0.99804 / 0.99996 / 1.00134 | - | - | 0.190 | 0.333 |
+| Lyra pair | 2 | mmlu | -0.8 | 20/20 | -1.2 / -0.2 / +0.2 | 0.952 | 0.190 | - | - |
+| Lyra pair | 10 | wiki | 1.00094 | 20/20 | 0.99682 / 1.00069 / 1.00323 | - | - | 0.429 | 0.524 |
 
 Per-control effects (moved cells):
 
+- nisten_L8N1955_d10 / wiki: rand_L8_k00_n4014_d10 0.99995, rand_L8_k01_n3596_d10 0.99996, rand_L8_k02_n831_d10 0.99964, rand_L8_k03_n9063_d10 0.99955, rand_L8_k04_n4918_d10 1.00134, rand_L8_k05_n4711_d10 1.00091, rand_L8_k06_n338_d10 0.99804, rand_L8_k07_n5752_d10 1.00050, rand_L8_k08_n9011_d10 1.00030, rand_L8_k09_n6614_d10 1.00076, rand_L8_k10_n277_d10 0.99963, rand_L8_k11_n4357_d10 0.99981, rand_L8_k12_n7000_d10 0.99941, rand_L8_k13_n8488_d10 1.00041, rand_L8_k14_n7505_d10 0.99884, rand_L8_k15_n9195_d10 0.99886, rand_L8_k16_n7277_d10 0.99996, rand_L8_k17_n305_d10 1.00061, rand_L8_k18_n116_d10 1.00075, rand_L8_k19_n3711_d10 1.00106
+- lyra_pair_d2 / mmlu: randpair_0_d2 -1.2 (p 0.031), randpair_1_d2 -0.2 (p 1.000), randpair_2_d2 -0.2 (p 1.000), randpair_3_d2 -0.4 (p 0.625), randpair_4_d2 +0.0 (p 1.000), randpair_5_d2 -0.4 (p 0.727), randpair_6_d2 -0.2 (p 1.000), randpair_7_d2 +0.0 (p 1.000), randpair_8_d2 -0.2 (p 1.000), randpair_9_d2 +0.0 (p 1.000), randpair_10_d2 -0.8 (p 0.219), randpair_11_d2 -0.8 (p 0.219), randpair_12_d2 -0.4 (p 0.688), randpair_13_d2 -0.4 (p 0.500), randpair_14_d2 -0.6 (p 0.375), randpair_15_d2 -0.2 (p 1.000), randpair_16_d2 +0.0 (p 1.000), randpair_17_d2 +0.2 (p 1.000), randpair_18_d2 -0.6 (p 0.453), randpair_19_d2 +0.2 (p 1.000)
+- lyra_pair_d10 / wiki: randpair_0_d10 0.99985, randpair_1_d10 0.99875, randpair_2_d10 1.00111, randpair_3_d10 0.99913, randpair_4_d10 1.00077, randpair_5_d10 1.00323, randpair_6_d10 1.00165, randpair_7_d10 1.00013, randpair_8_d10 1.00138, randpair_9_d10 1.00105, randpair_10_d10 0.99682, randpair_11_d10 1.00001, randpair_12_d10 1.00113, randpair_13_d10 1.00061, randpair_14_d10 0.99940, randpair_15_d10 1.00077, randpair_16_d10 0.99947, randpair_17_d10 0.99937, randpair_18_d10 1.00239, randpair_19_d10 1.00094
 
 ## Verdicts (A3; primary doses only)
 
@@ -101,6 +104,66 @@ Would the rerun pass the stage-2 gate if it were an arm? MMLU no, ARC no, Wiki n
 | confirm/nisten_L8N1955_d10 | 1000 | 1000 | 628 | 11050 |
 | confirm/nisten_L8N1955_d2 | 1000 | 1000 | 657 | 11050 |
 | confirm/nisten_L8N1955_d5 | 1000 | 1000 | 636 | 11050 |
+| confirm/rand_L8_k00_n4014_d10 | 200 | 200 | 222 | 14880 |
+| confirm/rand_L8_k01_n3596_d10 | 200 | 200 | 211 | 14880 |
+| confirm/rand_L8_k02_n831_d10 | 200 | 200 | 200 | 14880 |
+| confirm/rand_L8_k03_n9063_d10 | 200 | 200 | 199 | 14880 |
+| confirm/rand_L8_k04_n4918_d10 | 200 | 200 | 198 | 14880 |
+| confirm/rand_L8_k05_n4711_d10 | 200 | 200 | 200 | 14880 |
+| confirm/rand_L8_k06_n338_d10 | 200 | 200 | 201 | 14880 |
+| confirm/rand_L8_k07_n5752_d10 | 200 | 200 | 198 | 14880 |
+| confirm/rand_L8_k08_n9011_d10 | 200 | 200 | 196 | 14880 |
+| confirm/rand_L8_k09_n6614_d10 | 200 | 200 | 197 | 14880 |
+| confirm/rand_L8_k10_n277_d10 | 200 | 200 | 200 | 14880 |
+| confirm/rand_L8_k11_n4357_d10 | 200 | 200 | 194 | 14880 |
+| confirm/rand_L8_k12_n7000_d10 | 200 | 200 | 198 | 14880 |
+| confirm/rand_L8_k13_n8488_d10 | 200 | 200 | 197 | 14880 |
+| confirm/rand_L8_k14_n7505_d10 | 200 | 200 | 201 | 14880 |
+| confirm/rand_L8_k15_n9195_d10 | 200 | 200 | 201 | 14880 |
+| confirm/rand_L8_k16_n7277_d10 | 200 | 200 | 198 | 14880 |
+| confirm/rand_L8_k17_n305_d10 | 200 | 200 | 198 | 14880 |
+| confirm/rand_L8_k18_n116_d10 | 200 | 200 | 199 | 14880 |
+| confirm/rand_L8_k19_n3711_d10 | 200 | 200 | 202 | 14880 |
+| confirm/randpair_0_d10 | 200 | 200 | 220 | 14843 |
+| confirm/randpair_0_d2 | 500 | 500 | 326 | 14702 |
+| confirm/randpair_10_d10 | 200 | 200 | 207 | 14843 |
+| confirm/randpair_10_d2 | 500 | 500 | 333 | 14702 |
+| confirm/randpair_11_d10 | 200 | 200 | 206 | 14843 |
+| confirm/randpair_11_d2 | 500 | 500 | 316 | 14702 |
+| confirm/randpair_12_d10 | 200 | 200 | 211 | 14843 |
+| confirm/randpair_12_d2 | 500 | 500 | 315 | 14702 |
+| confirm/randpair_13_d10 | 200 | 200 | 208 | 14843 |
+| confirm/randpair_13_d2 | 500 | 500 | 317 | 14702 |
+| confirm/randpair_14_d10 | 200 | 200 | 206 | 14843 |
+| confirm/randpair_14_d2 | 500 | 500 | 320 | 14702 |
+| confirm/randpair_15_d10 | 200 | 200 | 210 | 14843 |
+| confirm/randpair_15_d2 | 500 | 500 | 322 | 14702 |
+| confirm/randpair_16_d10 | 200 | 200 | 213 | 14843 |
+| confirm/randpair_16_d2 | 500 | 500 | 321 | 14702 |
+| confirm/randpair_17_d10 | 200 | 200 | 206 | 14843 |
+| confirm/randpair_17_d2 | 500 | 500 | 321 | 14702 |
+| confirm/randpair_18_d10 | 200 | 200 | 211 | 14843 |
+| confirm/randpair_18_d2 | 500 | 500 | 322 | 14702 |
+| confirm/randpair_19_d10 | 200 | 200 | 214 | 14843 |
+| confirm/randpair_19_d2 | 500 | 500 | 317 | 14702 |
+| confirm/randpair_1_d10 | 200 | 200 | 210 | 14843 |
+| confirm/randpair_1_d2 | 500 | 500 | 318 | 14702 |
+| confirm/randpair_2_d10 | 200 | 200 | 208 | 14843 |
+| confirm/randpair_2_d2 | 500 | 500 | 318 | 14702 |
+| confirm/randpair_3_d10 | 200 | 200 | 202 | 14843 |
+| confirm/randpair_3_d2 | 500 | 500 | 323 | 14702 |
+| confirm/randpair_4_d10 | 200 | 200 | 206 | 14843 |
+| confirm/randpair_4_d2 | 500 | 500 | 318 | 14702 |
+| confirm/randpair_5_d10 | 200 | 200 | 203 | 14843 |
+| confirm/randpair_5_d2 | 500 | 500 | 317 | 14702 |
+| confirm/randpair_6_d10 | 200 | 200 | 205 | 14843 |
+| confirm/randpair_6_d2 | 500 | 500 | 322 | 14702 |
+| confirm/randpair_7_d10 | 200 | 200 | 207 | 14843 |
+| confirm/randpair_7_d2 | 500 | 500 | 320 | 14702 |
+| confirm/randpair_8_d10 | 200 | 200 | 221 | 14843 |
+| confirm/randpair_8_d2 | 500 | 500 | 317 | 14702 |
+| confirm/randpair_9_d10 | 200 | 200 | 209 | 14843 |
+| confirm/randpair_9_d2 | 500 | 500 | 329 | 14702 |
 | confirm/stock | 1000 | 1000 | 640 | 10346 |
 | confirm_rerun/confirm/stock | 1000 | 1000 | 671 | 10409 |
 
@@ -112,6 +175,7 @@ Would the rerun pass the stage-2 gate if it were an arm? MMLU no, ARC no, Wiki n
 - Because process 2 re-listed stock and nisten_L8N1955_d-5 with 0 new rows, their summary.json files were restored to the process-1 versions. nisten_L8N1955_d0's summary covers only the 155 resumed rows.
 - The VM was suspended once for about 15 minutes during nisten_L8N1955_d2 (kernel 'virtual machine fork' events); the guest clock did not advance, so its wall s in the table above (657 s) excludes the pause (wall-clock duration about 26 min). Results are unaffected.
 - Calibration (calib200, layers 8, 13, 14) was computed once in stage-1 process 1 and cached in results/calib/; process 2 and the stage-2 controls reuse that cache.
+- Readings of A3 where it leaves a choice: the Holm family mixes McNemar p (MMLU, ARC) and Wilcoxon p (Wiki); the stage-2 gate was checked for dose-0 cells too (none moved); 'damages' on Wiki = perplexity increase with Holm p < 0.05 and increase rank 1/21; 'perplexity rise below 5%' uses the point estimate of the ratio; bootstrap CIs are percentile intervals; Wilcoxon drops zero differences and uses the normal approximation with tie correction (matches scipy.stats.wilcoxon method='approx').
 
 ## Calibration scales (mean|act| on calib200): confirm recomputation vs screen rows
 

@@ -1,0 +1,49 @@
+[driver] 2026-11-01 19:28:03 IST start: bench.py --stage confirm --arm-ids rand_L8_*_d10 --items mmlu=0,arc=0,wiki=200 --threads 4
+[driver] bench pid 10226
+[disjoint] ok {'mmlu500': 500, 'mmlu_screen200': 200, 'calib200': 200, 'arc300': 300, 'wiki200': 200}; stage=confirm
+[plan] 20 arms x 200 forward passes ({'mmlu': 0, 'arc': 0, 'wiki': 200}) bs=1 + calibration 200; out=/workspace/neuron-bench/results
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]Loading weights: 100%|██████████| 426/426 [00:00<00:00, 9946.47it/s]
+[run_anon] weights copied to anonymous memory in 7s (waited 0s for MemAvailable)
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[arm] rand_L8_k00_n4014_d10: new=200 wiki={'n': 200, 'ppl': 14.880104171348751}
+[driver] 2026-11-01 19:32:04 IST committed rand_L8_k00_n4014_d10
+[arm] rand_L8_k01_n3596_d10: new=200 wiki={'n': 200, 'ppl': 14.880231124187}
+[driver] 2026-11-01 19:35:46 IST committed rand_L8_k01_n3596_d10
+[arm] rand_L8_k02_n831_d10: new=200 wiki={'n': 200, 'ppl': 14.875525429613713}
+[driver] 2026-11-01 19:39:07 IST committed rand_L8_k02_n831_d10
+[arm] rand_L8_k03_n9063_d10: new=200 wiki={'n': 200, 'ppl': 14.874164161751843}
+[driver] 2026-11-01 19:42:09 IST committed rand_L8_k03_n9063_d10
+[arm] rand_L8_k04_n4918_d10: new=200 wiki={'n': 200, 'ppl': 14.90081400518943}
+[driver] 2026-11-01 19:45:30 IST committed rand_L8_k04_n4918_d10
+[arm] rand_L8_k05_n4711_d10: new=200 wiki={'n': 200, 'ppl': 14.89434424336743}
+[driver] 2026-11-01 19:48:52 IST committed rand_L8_k05_n4711_d10
+[arm] rand_L8_k06_n338_d10: new=200 wiki={'n': 200, 'ppl': 14.851720507285286}
+[driver] 2026-11-01 19:52:13 IST committed rand_L8_k06_n338_d10
+[arm] rand_L8_k07_n5752_d10: new=200 wiki={'n': 200, 'ppl': 14.88822248170808}
+[driver] 2026-11-01 19:55:35 IST committed rand_L8_k07_n5752_d10
+[arm] rand_L8_k08_n9011_d10: new=200 wiki={'n': 200, 'ppl': 14.885359493190663}
+[driver] 2026-11-01 19:58:57 IST committed rand_L8_k08_n9011_d10
+[arm] rand_L8_k09_n6614_d10: new=200 wiki={'n': 200, 'ppl': 14.892219582240507}
+[driver] 2026-11-01 20:01:58 IST committed rand_L8_k09_n6614_d10
+[arm] rand_L8_k10_n277_d10: new=200 wiki={'n': 200, 'ppl': 14.875409562643235}
+[driver] 2026-11-01 20:05:20 IST committed rand_L8_k10_n277_d10
+[arm] rand_L8_k11_n4357_d10: new=200 wiki={'n': 200, 'ppl': 14.877949325972454}
+[driver] 2026-11-01 20:08:41 IST committed rand_L8_k11_n4357_d10
+[arm] rand_L8_k12_n7000_d10: new=200 wiki={'n': 200, 'ppl': 14.872040151002428}
+[driver] 2026-11-01 20:12:03 IST committed rand_L8_k12_n7000_d10
+[arm] rand_L8_k13_n8488_d10: new=200 wiki={'n': 200, 'ppl': 14.886880507488847}
+[driver] 2026-11-01 20:15:25 IST committed rand_L8_k13_n8488_d10
+[arm] rand_L8_k14_n7505_d10: new=200 wiki={'n': 200, 'ppl': 14.863655375196036}
+[driver] 2026-11-01 20:18:47 IST committed rand_L8_k14_n7505_d10
+[arm] rand_L8_k15_n9195_d10: new=200 wiki={'n': 200, 'ppl': 14.863828802453959}
+[driver] 2026-11-01 20:22:08 IST committed rand_L8_k15_n9195_d10
+[arm] rand_L8_k16_n7277_d10: new=200 wiki={'n': 200, 'ppl': 14.880295491593769}
+[driver] 2026-11-01 20:25:10 IST committed rand_L8_k16_n7277_d10
+[arm] rand_L8_k17_n305_d10: new=200 wiki={'n': 200, 'ppl': 14.88986279095171}
+[driver] 2026-11-01 20:28:32 IST committed rand_L8_k17_n305_d10
+[arm] rand_L8_k18_n116_d10: new=200 wiki={'n': 200, 'ppl': 14.891984509608026}
+[driver] 2026-11-01 20:31:54 IST committed rand_L8_k18_n116_d10
+[arm] rand_L8_k19_n3711_d10: new=200 wiki={'n': 200, 'ppl': 14.896554064926022}
+[driver] 2026-11-01 20:35:16 IST committed rand_L8_k19_n3711_d10
+[driver] 2026-11-01 20:35:16 IST bench exit 0

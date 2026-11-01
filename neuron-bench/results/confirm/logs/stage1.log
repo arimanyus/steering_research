@@ -1,0 +1,45 @@
+[driver] try 1 (with guard) aborted: 'GUARD: MemAvailable 7.1 GB < 10.5 GB'; no other python proc >2GB RSS -> rerun with --no-guard
+[driver] 2026-11-01 16:46:42 IST start: bench.py --stage confirm --arm-ids stock,nisten_*,lyra_pair_* --threads 4 --no-guard
+[driver] bench pid 3958
+[disjoint] ok {'mmlu500': 500, 'mmlu_screen200': 200, 'calib200': 200, 'arc300': 300, 'wiki200': 200}; stage=confirm
+[plan] 11 arms x 1000 forward passes ({'mmlu': 500, 'arc': 300, 'wiki': 200}) bs=1 + calibration 200; out=/workspace/neuron-bench/results
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]Loading weights: 100%|██████████| 426/426 [00:00<00:00, 4995.02it/s]
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[calib] 3 layers, 0 dirs, 22604 tokens, 166s -> /workspace/neuron-bench/results/calib/calib_Qwen_Qwen3.5-4B_feb25a58a4e9_bfloat16.pt
+[arm] stock: new=1000 mmlu={'n': 500, 'acc': 0.758} arc={'n': 300, 'acc': 0.93} wiki={'n': 200, 'ppl': 14.880847576380866}
+[driver] 2026-11-01 17:00:24 IST committed stock
+[arm] nisten_L8N1955_d-5: new=1000 mmlu={'n': 500, 'acc': 0.752} arc={'n': 300, 'acc': 0.93} wiki={'n': 200, 'ppl': 14.882520453357243}
+[driver] 2026-11-01 17:10:46 IST committed nisten_L8N1955_d-5
+[driver] 2026-11-01 17:30:38 IST bench exit 143
+[driver] 2026-11-01 17:30:55 IST killed bench pid 3958 (SIGTERM) during nisten_L8N1955_d0 (845/1000 rows done): balloon re-inflated to ~9.2 GiB and evicted the mmapped weights (RssFile 8.2 GB, ~5 s/item). Restarting via neuron-bench/run_anon.py (weights copied to anonymous memory; bench.py unchanged), --no-guard, resume.
+[driver] 2026-11-01 17:30:56 IST start: bench.py --stage confirm --arm-ids stock,nisten_*,lyra_pair_* --threads 4 --no-guard
+[driver] bench pid 5339
+[disjoint] ok {'mmlu500': 500, 'mmlu_screen200': 200, 'calib200': 200, 'arc300': 300, 'wiki200': 200}; stage=confirm
+[plan] 11 arms x 1000 forward passes ({'mmlu': 500, 'arc': 300, 'wiki': 200}) bs=1 + calibration 200; out=/workspace/neuron-bench/results
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]Loading weights: 100%|██████████| 426/426 [00:00<00:00, 10163.50it/s]
+[run_anon] weights copied to anonymous memory in 4s (waited 0s for MemAvailable)
+[arm] stock: new=0 mmlu={'n': 500, 'acc': 0.758} arc={'n': 300, 'acc': 0.93} wiki={'n': 200, 'ppl': 14.880847576380866}
+[arm] nisten_L8N1955_d-5: new=0 mmlu={'n': 500, 'acc': 0.752} arc={'n': 300, 'acc': 0.93} wiki={'n': 200, 'ppl': 14.882520453357243}
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[arm] nisten_L8N1955_d0: new=155 mmlu={'n': 500, 'acc': 0.756} arc={'n': 300, 'acc': 0.9333333333333333} wiki={'n': 200, 'ppl': 14.87956253035813}
+[driver] 2026-11-01 17:33:57 IST committed nisten_L8N1955_d0
+[arm] nisten_L8N1955_d2: new=1000 mmlu={'n': 500, 'acc': 0.762} arc={'n': 300, 'acc': 0.93} wiki={'n': 200, 'ppl': 14.882694997598536}
+[driver] 2026-11-01 17:59:49 IST committed nisten_L8N1955_d2
+[arm] nisten_L8N1955_d5: new=1000 mmlu={'n': 500, 'acc': 0.752} arc={'n': 300, 'acc': 0.93} wiki={'n': 200, 'ppl': 14.886047228968023}
+[driver] 2026-11-01 18:10:31 IST committed nisten_L8N1955_d5
+[arm] nisten_L8N1955_d10: new=1000 mmlu={'n': 500, 'acc': 0.754} arc={'n': 300, 'acc': 0.9333333333333333} wiki={'n': 200, 'ppl': 14.893083413679122}
+[driver] 2026-11-01 18:20:54 IST committed nisten_L8N1955_d10
+[arm] lyra_pair_d-5: new=1000 mmlu={'n': 500, 'acc': 0.756} arc={'n': 300, 'acc': 0.93} wiki={'n': 200, 'ppl': 14.87947361811776}
+[driver] 2026-11-01 18:31:16 IST committed lyra_pair_d-5
+[arm] lyra_pair_d0: new=1000 mmlu={'n': 500, 'acc': 0.754} arc={'n': 300, 'acc': 0.93} wiki={'n': 200, 'ppl': 14.878888353365667}
+[driver] 2026-11-01 18:41:38 IST committed lyra_pair_d0
+[arm] lyra_pair_d2: new=1000 mmlu={'n': 500, 'acc': 0.75} arc={'n': 300, 'acc': 0.9266666666666666} wiki={'n': 200, 'ppl': 14.87876031883064}
+[driver] 2026-11-01 18:52:41 IST committed lyra_pair_d2
+[arm] lyra_pair_d5: new=1000 mmlu={'n': 500, 'acc': 0.754} arc={'n': 300, 'acc': 0.9333333333333333} wiki={'n': 200, 'ppl': 14.87724569150068}
+[driver] 2026-11-01 19:03:24 IST committed lyra_pair_d5
+[arm] lyra_pair_d10: new=1000 mmlu={'n': 500, 'acc': 0.756} arc={'n': 300, 'acc': 0.93} wiki={'n': 200, 'ppl': 14.894800283563807}
+[driver] 2026-11-01 19:13:46 IST committed lyra_pair_d10
+[driver] 2026-11-01 19:14:06 IST bench exit 0

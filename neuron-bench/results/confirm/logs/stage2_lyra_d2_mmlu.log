@@ -1,0 +1,49 @@
+[driver] 2026-11-01 20:35:16 IST start: bench.py --stage confirm --arm-ids randpair_*_d2 --items mmlu=500,arc=0,wiki=0 --threads 4
+[driver] bench pid 14234
+[disjoint] ok {'mmlu500': 500, 'mmlu_screen200': 200, 'calib200': 200, 'arc300': 300, 'wiki200': 200}; stage=confirm
+[plan] 20 arms x 500 forward passes ({'mmlu': 500, 'arc': 0, 'wiki': 0}) bs=1 + calibration 200; out=/workspace/neuron-bench/results
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]Loading weights:  14%|█▍        | 60/426 [00:00<00:00, 596.61it/s]Loading weights:  32%|███▏      | 137/426 [00:00<00:00, 659.90it/s]Loading weights:  52%|█████▏    | 223/426 [00:00<00:00, 736.58it/s]Loading weights:  70%|██████▉   | 297/426 [00:00<00:00, 709.32it/s]Loading weights: 100%|██████████| 426/426 [00:00<00:00, 903.47it/s]
+[run_anon] weights copied to anonymous memory in 12s (waited 0s for MemAvailable)
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[arm] randpair_0_d2: new=500 mmlu={'n': 500, 'acc': 0.746}
+[driver] 2026-11-01 20:41:17 IST committed randpair_0_d2
+[arm] randpair_1_d2: new=500 mmlu={'n': 500, 'acc': 0.756}
+[driver] 2026-11-01 20:46:39 IST committed randpair_1_d2
+[arm] randpair_2_d2: new=500 mmlu={'n': 500, 'acc': 0.756}
+[driver] 2026-11-01 20:51:40 IST committed randpair_2_d2
+[arm] randpair_3_d2: new=500 mmlu={'n': 500, 'acc': 0.754}
+[driver] 2026-11-01 20:57:02 IST committed randpair_3_d2
+[arm] randpair_4_d2: new=500 mmlu={'n': 500, 'acc': 0.758}
+[driver] 2026-11-01 21:02:24 IST committed randpair_4_d2
+[arm] randpair_5_d2: new=500 mmlu={'n': 500, 'acc': 0.754}
+[driver] 2026-11-01 21:07:46 IST committed randpair_5_d2
+[arm] randpair_6_d2: new=500 mmlu={'n': 500, 'acc': 0.756}
+[driver] 2026-11-01 21:13:07 IST committed randpair_6_d2
+[arm] randpair_7_d2: new=500 mmlu={'n': 500, 'acc': 0.758}
+[driver] 2026-11-01 21:18:29 IST committed randpair_7_d2
+[arm] randpair_8_d2: new=500 mmlu={'n': 500, 'acc': 0.756}
+[driver] 2026-11-01 21:23:51 IST committed randpair_8_d2
+[arm] randpair_9_d2: new=500 mmlu={'n': 500, 'acc': 0.758}
+[driver] 2026-11-01 21:29:13 IST committed randpair_9_d2
+[arm] randpair_10_d2: new=500 mmlu={'n': 500, 'acc': 0.75}
+[driver] 2026-11-01 21:34:55 IST committed randpair_10_d2
+[arm] randpair_11_d2: new=500 mmlu={'n': 500, 'acc': 0.75}
+[driver] 2026-11-01 21:39:57 IST committed randpair_11_d2
+[arm] randpair_12_d2: new=500 mmlu={'n': 500, 'acc': 0.754}
+[driver] 2026-11-01 21:45:19 IST committed randpair_12_d2
+[arm] randpair_13_d2: new=500 mmlu={'n': 500, 'acc': 0.754}
+[driver] 2026-11-01 21:50:41 IST committed randpair_13_d2
+[arm] randpair_14_d2: new=500 mmlu={'n': 500, 'acc': 0.752}
+[driver] 2026-11-01 21:56:03 IST committed randpair_14_d2
+[arm] randpair_15_d2: new=500 mmlu={'n': 500, 'acc': 0.756}
+[driver] 2026-11-01 22:01:25 IST committed randpair_15_d2
+[arm] randpair_16_d2: new=500 mmlu={'n': 500, 'acc': 0.758}
+[driver] 2026-11-01 22:06:47 IST committed randpair_16_d2
+[arm] randpair_17_d2: new=500 mmlu={'n': 500, 'acc': 0.76}
+[driver] 2026-11-01 22:12:10 IST committed randpair_17_d2
+[arm] randpair_18_d2: new=500 mmlu={'n': 500, 'acc': 0.752}
+[driver] 2026-11-01 22:17:12 IST committed randpair_18_d2
+[arm] randpair_19_d2: new=500 mmlu={'n': 500, 'acc': 0.76}
+[driver] 2026-11-01 22:22:34 IST committed randpair_19_d2
+[driver] 2026-11-01 22:22:34 IST bench exit 0

@@ -1,0 +1,2 @@
+[rerun] 2026-11-01 19:26:19 IST: plain bench.py (no wrapper), guard passed (no --no-guard), foreground shell (output piped through tail -1):
+[arm] stock: new=1000 mmlu={'n': 500, 'acc': 0.758} arc={'n': 300, 'acc': 0.93} wiki={'n': 200, 'ppl': 14.878269304812271}

@@ -21,7 +21,10 @@ NOTES = ["Environment: results/confirm/ENV.txt (pip freeze identical to results/
          "All later stage-1 arms and all stage-2 controls ran through run_anon.py. The stage-1 stock run and the stock rerun both ran as plain bench.py.",
          "Because process 2 re-listed stock and nisten_L8N1955_d-5 with 0 new rows, their summary.json files were restored to the process-1 versions. nisten_L8N1955_d0's summary covers only the 155 resumed rows.",
          "The VM was suspended once for about 15 minutes during nisten_L8N1955_d2 (kernel 'virtual machine fork' events); the guest clock did not advance, so its wall s in the table above (657 s) excludes the pause (wall-clock duration about 26 min). Results are unaffected.",
-         "Calibration (calib200, layers 8, 13, 14) was computed once in stage-1 process 1 and cached in results/calib/; process 2 and the stage-2 controls reuse that cache."]
+         "Calibration (calib200, layers 8, 13, 14) was computed once in stage-1 process 1 and cached in results/calib/; process 2 and the stage-2 controls reuse that cache.",
+         "Readings of A3 where it leaves a choice: the Holm family mixes McNemar p (MMLU, ARC) and Wilcoxon p (Wiki); the stage-2 gate was checked for dose-0 cells too (none moved); "
+         "'damages' on Wiki = perplexity increase with Holm p < 0.05 and increase rank 1/21; 'perplexity rise below 5%' uses the point estimate of the ratio; bootstrap CIs are percentile intervals; "
+         "Wilcoxon drops zero differences and uses the normal approximation with tie correction (matches scipy.stats.wilcoxon method='approx')."]
 
 def load(fp):
     """-> {bench: {item_id: row}} or None if the file is missing"""
