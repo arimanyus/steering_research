@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""results/screen/*.jsonl -> RESULTS_screen.md: per arm, MMLU-screen acc and mean gold-logprob delta vs stock (paired on item_id)."""
+"""results/screen/*.jsonl (lines 1-80 run only) -> RESULTS_screen_orig80.md: per arm, MMLU-screen acc and mean gold-logprob delta vs the orig stock run (paired on item_id). The full 211-arm scoring is RESULTS_screen.md (Asha Rao)."""
 import os, json, glob, statistics
 HERE = os.path.dirname(os.path.abspath(__file__)); OUT = f"{HERE}/results/screen"
 
@@ -36,5 +36,5 @@ L = ["# MMLU damage screen: Qwen3.5-4B, CPU", "",
      "| arm | n | acc | d_acc | d_gold_lp (mean +/- se) | peak RSS MB |", "|---|---|---|---|---|---|"]
 for aid, n, acc, dacc, md, se, peak in rows:
     L.append(f"| {aid} | {n} | {acc:.3f} | {dacc:+.3f} | {md:+.4f} +/- {se:.4f} | {peak:.0f} |")
-open(f"{HERE}/RESULTS_screen.md", "w").write("\n".join(L) + "\n")
-print(f"{len(rows)} arms -> RESULTS_screen.md; missing {len(missing)}")
+open(f"{HERE}/RESULTS_screen_orig80.md", "w").write("\n".join(L) + "\n")
+print(f"{len(rows)} arms -> RESULTS_screen_orig80.md; missing {len(missing)}")
